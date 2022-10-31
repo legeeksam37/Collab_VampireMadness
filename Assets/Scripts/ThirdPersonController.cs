@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
@@ -267,6 +268,22 @@ namespace StarterAssets
             }
         }
 
+        private void Interaction(ControllerColliderHit hit)
+        {
+            if (_input.interaction)
+            {
+                Rigidbody body = hit.collider.attachedRigidbody;
+                if (body != null)
+                {
+                    InteractionBase interaction = body.GetComponentInParent<InteractionBase>();
+                    if (interaction != null)
+                    {
+                        interaction.Action();
+                    }
+                }
+            } 
+        }
+
         private void MainGravity()
         {
             if (Grounded)
@@ -330,6 +347,10 @@ namespace StarterAssets
                 new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z),
                 GroundedRadius);
         }
+        private void OnControllerColliderHit(ControllerColliderHit hit)
+        {
+            if (hit.gameObject.tag == "Interactible") Interaction(hit);
+        }
 
         private void OnFootstep(AnimationEvent animationEvent)
         {
@@ -337,7 +358,7 @@ namespace StarterAssets
             {
                 if (FootstepAudioClips.Length > 0)
                 {
-                    var index = Random.Range(0, FootstepAudioClips.Length);
+                    var index = UnityEngine.Random.Range(0, FootstepAudioClips.Length);
                     AudioSource.PlayClipAtPoint(FootstepAudioClips[index], transform.TransformPoint(_controller.center), FootstepAudioVolume);
                 }
             }
