@@ -780,8 +780,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4088985291582948644}
   - component: {fileID: -1544666514636293634}
-  - component: {fileID: -5377971819907934603}
-  - component: {fileID: -4960398665674197588}
+  - component: {fileID: 1090792571756047132}
+  - component: {fileID: 9031598434354746840}
+  - component: {fileID: -2851170113016079083}
+  - component: {fileID: 8372090213192225329}
   m_Layer: 0
   m_Name: Vampire
   m_TagString: Untagged
@@ -826,6 +828,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1090792571756047132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3743950178230017950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dba7c9e234087548b925a70c9ebc879, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movePositionTransform: {fileID: 7753758839992651005, guid: 73171dd58b0e4224e98d78df242f2698,
+    type: 3}
+  anim: {fileID: -1544666514636293634}
+  cooldown: 0
 --- !u!195 &9031598434354746840
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -848,22 +866,36 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1090792571756047132
-MonoBehaviour:
+--- !u!136 &-2851170113016079083
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3743950178230017950}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dba7c9e234087548b925a70c9ebc879, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movePositionTransform: {fileID: 7753758839992651005, guid: 73171dd58b0e4224e98d78df242f2698,
-    type: 3}
-  anim: {fileID: -1544666514636293634}
-  cooldown: 0
+  m_Radius: 0.22501165
+  m_Height: 2.3548632
+  m_Direction: 1
+  m_Center: {x: -0.0033358335, y: 0.6774316, z: 0}
+--- !u!54 &8372090213192225329
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3743950178230017950}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &4114147283106821021
 GameObject:
   m_ObjectHideFlags: 0
