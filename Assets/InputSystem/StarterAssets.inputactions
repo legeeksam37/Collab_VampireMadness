@@ -36,10 +36,10 @@
                     "name": "Interaction",
                     "type": "PassThrough",
                     "id": "a130ca7c-3b2d-4217-a25a-fa0211938e61",
-                    "expectedControlType": "Key",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
