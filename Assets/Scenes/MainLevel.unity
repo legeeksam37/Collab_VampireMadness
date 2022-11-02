@@ -46676,7 +46676,7 @@ GameObject:
   - component: {fileID: 1218397173}
   m_Layer: 0
   m_Name: WaveManager
-  m_TagString: Untagged
+  m_TagString: WaveManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -70919,6 +70919,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49b3421acc3ed4b4798830e6a77a4c09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PV: 100
   Points: 500
   SpellsPower: 1
 --- !u!4 &1879110963 stripped
@@ -78829,6 +78830,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawn (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1541305915421241561, guid: 97592b3acd61fee48b7ec17f272ae01e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1541305915421241558, guid: 97592b3acd61fee48b7ec17f272ae01e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 97592b3acd61fee48b7ec17f272ae01e, type: 3}
@@ -81677,6 +81683,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Spawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 1541305915421241561, guid: 97592b3acd61fee48b7ec17f272ae01e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1541305915421241558, guid: 97592b3acd61fee48b7ec17f272ae01e, type: 3}
