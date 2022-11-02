@@ -7,6 +7,10 @@ public class EnemyController : MonoBehaviour
 {
     [SerializeField] public Transform movePositionTransform;
 
+    [SerializeField] private Animator anim;
+
+    private float distPlayer;
+
     private NavMeshAgent agent;
 
     public float cooldown;
@@ -17,6 +21,7 @@ public class EnemyController : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         movePositionTransform = GameObject.Find(movePositionTransform.name).transform;
+        distPlayer = Vector3.Distance(movePositionTransform.position, transform.position);
     }
 
     // Update is called once per frame
@@ -25,8 +30,13 @@ public class EnemyController : MonoBehaviour
         if (isMove == true)
         {
             agent.destination = movePositionTransform.position;
-            
+            distPlayer = Vector3.Distance(movePositionTransform.position, transform.position);
         }
- 
+
+        anim.ResetTrigger("Attack");
+
+        if (distPlayer <= 1){
+            anim.SetTrigger("Attack");
+         }
     }
 }

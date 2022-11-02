@@ -37,7 +37,7 @@ public class WaveSpawner : MonoBehaviour
 
         if (EnemiesAlive > 0)
         {
-            Debug.Log(EnemiesAlive);
+//            Debug.Log(EnemiesAlive);
             return;
         }
         else 
