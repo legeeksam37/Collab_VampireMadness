@@ -6,9 +6,9 @@ TagManager:
   tags:
   - CinemachineTarget
   - Interactible
-  - Fireball
-  - FireStart
   - Bullet
+  - Enemy
+  - WaveManager
   layers:
   - Default
   - TransparentFX

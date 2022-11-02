@@ -11,9 +11,15 @@ public class EnemyController : MonoBehaviour
 
     [SerializeField] private Animator anim;
 
+    private WaveSpawner waveSpawner;
+
     private NavMeshAgent agent;
 
     public float cooldown;
+
+    private float damage;
+
+    public float life;
 
     public static bool isMove = false;
 
@@ -21,6 +27,8 @@ public class EnemyController : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         movePositionTransform = GameObject.Find(movePositionTransform.name).transform;
+        waveSpawner = GameObject.FindWithTag("WaveManager").GetComponent<WaveSpawner>();
+        life = 100;
     }
 
     // Update is called once per frame
@@ -31,35 +39,48 @@ public class EnemyController : MonoBehaviour
             agent.destination = movePositionTransform.position;
         }
         if (Vector3.Distance(movePositionTransform.position, transform.position) <= 1){
-            CollisionEnter();
+            //CollisionEnter();
         }
+        Death();
 
     }
 
-    void CollisionEnter()
+    //void CollisionEnter()
+    //{
+    //    anim.SetTrigger("Attack");
+    //    movePositionTransform.GetComponent<PlayerStats>().PV -= 15;
+    //    isMove = false;
+    //}
+
+    void Death()
     {
-        anim.SetTrigger("Attack");
-        movePositionTransform.GetComponent<PlayerStats>().PV -= 15;
-        isMove = false;
-    }
-
-    void OnTriggerEnter(Collider col){
-        if (col.tag == "player"){
-            Debug.Log("hello");
-        }
-
-        if (col.tag == "untagged"){
-            cap.isTrigger = true;
-            Debug.Log("hello");
+        if(life <= 0)
+        {
+            if(waveSpawner.EnemiesAlive != 0)
+            {
+                waveSpawner.EnemiesAlive -= 1;
+            }    
+            Destroy(gameObject);
         }
     }
 
-    void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.tag == "Player"){
-            anim.ResetTrigger("Attack");
-            isMove = true;
-        }
-    }
+    //void OnTriggerEnter(Collider col){
+    //    if (col.tag == "player"){
+    //        Debug.Log("hello");
+    //    }
+
+    //    if (col.tag == "untagged"){
+    //        cap.isTrigger = true;
+    //        Debug.Log("hello");
+    //    }
+    //}
+
+    //void OnCollisionExit(Collision collision)
+    //{
+    //    if (collision.gameObject.tag == "Player"){
+    //        anim.ResetTrigger("Attack");
+    //        isMove = true;
+    //    }
+    //}
 
 }

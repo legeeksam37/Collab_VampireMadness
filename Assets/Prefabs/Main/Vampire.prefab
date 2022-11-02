@@ -786,7 +786,7 @@ GameObject:
   - component: {fileID: 8372090213192225329}
   m_Layer: 0
   m_Name: Vampire
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -842,8 +842,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movePositionTransform: {fileID: 7753758839992651005, guid: 73171dd58b0e4224e98d78df242f2698,
     type: 3}
+  cap: {fileID: 0}
   anim: {fileID: -1544666514636293634}
   cooldown: 0
+  life: 0
 --- !u!195 &9031598434354746840
 NavMeshAgent:
   m_ObjectHideFlags: 0

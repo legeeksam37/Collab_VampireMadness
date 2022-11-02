@@ -9,7 +9,7 @@ public class Fireball : MonoBehaviour
 
     void Start()
     {
-        damage = 1;
+        damage = 50;
         GameObject player = GameObject.FindWithTag("Player");
         if (player != null)
         {
@@ -34,6 +34,11 @@ public class Fireball : MonoBehaviour
         if (collision != null)
         {
             Destroy(gameObject);
+        }
+        if(collision.gameObject.tag == "Enemy")
+        {
+            EnemyController enemyController = collision.gameObject.GetComponent<EnemyController>();
+            enemyController.life -= damage;
         }
     }
 }

@@ -1039,7 +1039,7 @@ GameObject:
   - component: {fileID: -2962569347071896573}
   m_Layer: 0
   m_Name: Zombie
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1120,6 +1120,7 @@ MonoBehaviour:
   cap: {fileID: -7910053945329857892}
   anim: {fileID: -1290493750629271810}
   cooldown: 0
+  life: 0
 --- !u!136 &-7910053945329857892
 CapsuleCollider:
   m_ObjectHideFlags: 0
