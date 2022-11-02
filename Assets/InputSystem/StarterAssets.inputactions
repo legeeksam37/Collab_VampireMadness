@@ -34,11 +34,11 @@
                 },
                 {
                     "name": "Interaction",
-                    "type": "PassThrough",
+                    "type": "Button",
                     "id": "a130ca7c-3b2d-4217-a25a-fa0211938e61",
-                    "expectedControlType": "Key",
+                    "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press(behavior=2)",
                     "initialStateCheck": false
                 }
             ],
@@ -201,7 +201,7 @@
                     "name": "",
                     "id": "3d96b6a2-f18c-4cb4-98d2-1057b144085c",
                     "path": "<Keyboard>/e",
-                    "interactions": "",
+                    "interactions": "Press(behavior=2)",
                     "processors": "",
                     "groups": "KeyboardMouse",
                     "action": "Interaction",
@@ -212,7 +212,7 @@
                     "name": "",
                     "id": "94095307-6218-472e-9c49-31645fabc78b",
                     "path": "<Gamepad>/buttonWest",
-                    "interactions": "",
+                    "interactions": "Press(behavior=2)",
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Interaction",
