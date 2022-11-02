@@ -2,6 +2,7 @@
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using Photon.Pun;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
@@ -97,6 +98,9 @@ namespace StarterAssets
         private int _animIDFreeFall;
         private int _animIDMotionSpeed;
 
+        //Photon
+        PhotonView view;
+
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
         private PlayerInput _playerInput;
 #endif
@@ -154,17 +158,21 @@ namespace StarterAssets
 
             // reset our timeouts on start
             _fallTimeoutDelta = FallTimeout;
+
+            view = GetComponent<PhotonView>();
         }
 
         private void Update()
         {
-            _hasAnimator = TryGetComponent(out _animator);
-            _fireStart.transform.rotation = transform.rotation;
+            if (view.IsMine){
+                _hasAnimator = TryGetComponent(out _animator);
+                _fireStart.transform.rotation = transform.rotation;
 
-            MainGravity();
-            GroundedCheck();
-            Move();
-            Fire();
+                MainGravity();
+                GroundedCheck();
+                Move();
+                Fire();
+            }
         }
 
         private void LateUpdate()
