@@ -28,6 +28,8 @@ public class Fireball : MonoBehaviour
         int _throwForce = 1000;
         GameObject _newBall = Instantiate(gameObject, position.position, position.rotation);
         _newBall.GetComponent<Rigidbody>().AddForce(position.forward * _throwForce);
+        _newBall.gameObject.transform.SetParent(GameObject.Find("GameObjects").gameObject.transform);
+
     }
     private void OnCollisionEnter(Collision collision)
     {
