@@ -10,7 +10,7 @@ public class PlayerStats : MonoBehaviour
 
     public float SpellsPower = 1f;
 
-    public void UsePoints(int amount)
+    public void UsePoints(float amount)
     {
         Points -= amount;
     }
