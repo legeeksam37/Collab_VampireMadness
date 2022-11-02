@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PlayerController : MonoBehaviour
+public class EnemyController : MonoBehaviour
 {
     [SerializeField] private Transform movePositionTransform;
 
@@ -20,19 +20,5 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
       agent.destination = movePositionTransform.position;
-    }
-
-
-     void OnCollisionEnter(Collision collision)
-    {
-        if ( collision.gameObject.tag == "sphère")
-        {
-           if (Time.time > lastAttack)
-           {
-                lastAttack = Time.time;
-                Debug.Log("Je te touche");
-           }
-          
-        }
     }
 }
