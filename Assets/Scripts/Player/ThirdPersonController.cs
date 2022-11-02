@@ -96,6 +96,7 @@ namespace StarterAssets
         private CharacterController _controller;
         private StarterAssetsInputs _input;
         private GameObject _mainCamera;
+        private Collider _collider;
 
         private const float _threshold = 0.01f;
 
@@ -268,11 +269,12 @@ namespace StarterAssets
             }
         }
 
-        private void Interaction(ControllerColliderHit hit)
+        private void Interaction(Collider other)
         {
-            if (_input.interaction)
+            if(_input.interaction)
             {
-                Rigidbody body = hit.collider.attachedRigidbody;
+                Debug.Log("Test");
+                Rigidbody body = other.attachedRigidbody;
                 if (body != null)
                 {
                     InteractionBase interaction = body.GetComponentInParent<InteractionBase>();
@@ -281,7 +283,7 @@ namespace StarterAssets
                         interaction.Action();
                     }
                 }
-            } 
+            }   
         }
 
         private void MainGravity()
@@ -347,9 +349,12 @@ namespace StarterAssets
                 new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z),
                 GroundedRadius);
         }
-        private void OnControllerColliderHit(ControllerColliderHit hit)
+        private void OnTriggerStay(Collider other)
         {
-            if (hit.gameObject.tag == "Interactible") Interaction(hit);
+            if (other.gameObject.tag == "Interactible")
+            {
+                Interaction(other); 
+            }
         }
 
         private void OnFootstep(AnimationEvent animationEvent)
