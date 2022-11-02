@@ -1,4 +1,6 @@
 ﻿using System;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
@@ -101,6 +103,12 @@ namespace StarterAssets
         private StarterAssetsInputs _input;
         private GameObject _mainCamera;
 
+        // fire system
+        [Header("Fire system")]
+        public float _cooldown;
+        public Transform _fireStart;
+        public Fireball _fireball;
+
         private const float _threshold = 0.01f;
 
         private bool _hasAnimator;
@@ -136,6 +144,7 @@ namespace StarterAssets
             _input = GetComponent<StarterAssetsInputs>();
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
             _playerInput = GetComponent<PlayerInput>();
+            _cooldown = 0;
 #else
 			Debug.LogError( "Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
 #endif
@@ -153,6 +162,7 @@ namespace StarterAssets
             MainGravity();
             GroundedCheck();
             Move();
+            Fire();
         }
 
         private void LateUpdate()
@@ -287,6 +297,23 @@ namespace StarterAssets
                 }
             }
             _input.interaction = false;
+        }
+
+        private void Fire()
+        {
+            if(_input.fire)
+            {
+                if(_cooldown <= 0)
+                {
+                    _fireball.LaunchBullet(_fireStart);
+                    _cooldown = 1;
+                }
+            }
+            if(_cooldown > 0)
+            {
+                _cooldown -= Time.deltaTime;
+            }
+            _input.fire = false;
         }
 
         private void MainGravity()

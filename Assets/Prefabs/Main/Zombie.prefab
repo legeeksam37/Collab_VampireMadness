@@ -1033,8 +1033,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5285976341508418462}
   - component: {fileID: -1290493750629271810}
-  - component: {fileID: 4350267677592025670}
-  - component: {fileID: 2996893860044923913}
+  - component: {fileID: 3339246595768457402}
+  - component: {fileID: 5079311017291016245}
   m_Layer: 0
   m_Name: Zombie
   m_TagString: Untagged
@@ -1079,7 +1079,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!195 &4350267677592025670
+--- !u!195 &3339246595768457402
 NavMeshAgent:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1101,7 +1101,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &2996893860044923913
+--- !u!114 &5079311017291016245
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1650,7 +1650,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5410584617236207912, guid: a8d0c0d3de3cee34d92754bd7e764b53, type: 3}
+  - {fileID: 2100000, guid: 281a4c418aae1104eaf0626b78d547ed, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
