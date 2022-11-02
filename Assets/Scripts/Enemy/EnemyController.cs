@@ -5,20 +5,28 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] private Transform movePositionTransform;
+    [SerializeField] public Transform movePositionTransform;
 
     private NavMeshAgent agent;
 
     public float cooldown;
-    float lastAttack;
+
+    public static bool isMove = false;
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        movePositionTransform = GameObject.Find(movePositionTransform.name).transform;
     }
 
     // Update is called once per frame
     void Update()
-    {
-      agent.destination = movePositionTransform.position;
+    { 
+        if (isMove == true)
+        {
+            agent.destination = movePositionTransform.position;
+            
+        }
+ 
     }
 }

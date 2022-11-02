@@ -143,6 +143,7 @@ GameObject:
   - component: {fileID: -834796377757501573}
   - component: {fileID: 8452570350732518398}
   - component: {fileID: -3402309709050691370}
+  - component: {fileID: 7115520355595362503}
   m_Layer: 8
   m_Name: Male
   m_TagString: Untagged
@@ -181,7 +182,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: a3271f498b722414d80a8eee02db798f, type: 3}
   m_Controller: {fileID: 9100000, guid: 8d1f93ef57e3dc845a47b2bccd4f8d06, type: 2}
-  m_CullingMode: 0
+  m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -323,6 +324,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7115520355595362503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 976439015803821961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49b3421acc3ed4b4798830e6a77a4c09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Points: 0
+  SpellsPower: 1
 --- !u!1 &1000122329181003523
 GameObject:
   m_ObjectHideFlags: 0
