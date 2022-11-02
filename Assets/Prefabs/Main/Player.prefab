@@ -309,7 +309,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 720413352380421977}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.399, z: 0.095}
+  m_LocalPosition: {x: 0, y: 1.4, z: 0.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1896,6 +1896,7 @@ GameObject:
   - component: {fileID: 6665165911083190843}
   - component: {fileID: 6976412522085537355}
   - component: {fileID: 4611509450620298590}
+  - component: {fileID: 1878733551}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -2005,7 +2006,9 @@ MonoBehaviour:
   CameraAngleOverride: 0
   LockCameraPosition: 0
   _cooldown: 0
-  _fireball: {fileID: 0}
+  _fireStart: {fileID: 7877080153355509561}
+  _fireball: {fileID: -4069397903096368691, guid: 09a95e64686f5574fb8354f3dcc45a06,
+    type: 3}
 --- !u!114 &878586075164261559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2158,6 +2161,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1878733551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6976412522085537351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49b3421acc3ed4b4798830e6a77a4c09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Points: 0
+  SpellsPower: 1
 --- !u!1 &7051795087987297428
 GameObject:
   m_ObjectHideFlags: 0
