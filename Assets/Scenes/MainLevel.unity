@@ -8881,6 +8881,7 @@ GameObject:
   - component: {fileID: 237960367}
   - component: {fileID: 237960366}
   - component: {fileID: 237960365}
+  - component: {fileID: 237960370}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Interactible
@@ -8982,6 +8983,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &237960370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 237960364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fadc5a66547ba2d4dbea176179093fa5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BuyCost: 0
 --- !u!4 &238828352 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 493086, guid: a2d22ce70dfdb254e9cf1a761853209a,
@@ -63548,6 +63562,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6976412522085537356, guid: 73171dd58b0e4224e98d78df242f2698,
+        type: 3}
+      propertyPath: Points
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7753758839992651005, guid: 73171dd58b0e4224e98d78df242f2698,
         type: 3}

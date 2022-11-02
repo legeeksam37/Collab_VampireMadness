@@ -1,15 +1,14 @@
 using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class InteractionBase : MonoBehaviour
 {
-    public ThirdPersonController player;
     // Start is called before the first frame update
     public virtual void Start()
     {
-        player = GetComponent<ThirdPersonController>();
     }
 
     // Update is called once per frame
@@ -18,11 +17,11 @@ public class InteractionBase : MonoBehaviour
         
     }
 
-    public virtual void Action()
+    public virtual void Action(GameObject player)
     {
-        if(player != null)
+        if (player.GetComponent<ThirdPersonController>())
         {
-            //DoAction
+           
         }
     }
 }

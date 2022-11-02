@@ -15,13 +15,17 @@ namespace StarterAssets
 #endif
     public class ThirdPersonController : MonoBehaviour
     {
-        [Header("Player")]
+        [Header("Player stats")]
+
         [Tooltip("Move speed of the character in m/s")]
         public float MoveSpeed = 2.0f;
 
         [Tooltip("Sprint speed of the character in m/s")]
         public float SprintSpeed = 5.335f;
 
+
+
+        [Header("Player details")]
         [Tooltip("How fast the character turns to face movement direction")]
         [Range(0.0f, 0.3f)]
         public float RotationSmoothTime = 0.12f;
@@ -272,14 +276,13 @@ namespace StarterAssets
         {
             if(_input.interaction)
             {
-                Debug.Log("Test");
                 Rigidbody body = other.attachedRigidbody;
                 if (body != null)
                 {
                     InteractionBase interaction = body.GetComponentInParent<InteractionBase>();
                     if (interaction != null)
                     {
-                        interaction.Action();
+                        interaction.Action(gameObject);
                     }
                 }
             }
