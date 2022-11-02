@@ -39,6 +39,8 @@ namespace StarterAssets
         public AudioClip[] FootstepAudioClips;
         [Range(0, 1)] public float FootstepAudioVolume = 0.5f;
 
+        public AudioClip[] FirebalAudioClips;
+
         [Tooltip("The character uses its own gravity value. The engine default is -9.81f")]
         public float Gravity = -15.0f;
 
@@ -307,6 +309,12 @@ namespace StarterAssets
                 {
                     _fireball.LaunchBullet(_fireStart);
                     _cooldown = 1;
+
+                    if (FirebalAudioClips.Length > 0)
+                    {
+                        var index = UnityEngine.Random.Range(0, FirebalAudioClips.Length);
+                        AudioSource.PlayClipAtPoint(FirebalAudioClips[index], transform.TransformPoint(_controller.center), 1);
+                    }
                 }
             }
             if(_cooldown > 0)
