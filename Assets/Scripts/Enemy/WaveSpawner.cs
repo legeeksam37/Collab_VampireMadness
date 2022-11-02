@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 public class WaveSpawner : MonoBehaviour
 {
 
+    [SerializeField]
+    private UIManager uiManager;
 
     public List<GameObject> spawnedEnemy = new List<GameObject>();
     public List<Transform> spawningPoints = new List<Transform>();
@@ -22,10 +24,9 @@ public class WaveSpawner : MonoBehaviour
     [SerializeField]
     private float TimeBetweenWaves = 5f;
 
-    private float countdown = 2f;
+    private float countdown = 5f;
 
-    private int waveIndex = 0;
-
+    public int waveIndex = 0;
 
     public int EnemiesAlive = 0;
 
@@ -42,6 +43,7 @@ public class WaveSpawner : MonoBehaviour
         else 
         {
             EnemyController.isMove = false;
+            uiManager.ShowProgressBarWave(true);
         }
 
         if (countdown <= 0f)
@@ -51,18 +53,23 @@ public class WaveSpawner : MonoBehaviour
             //return;
         }
         countdown -= Time.deltaTime;
+
+        uiManager.UpdateProgressBarWave(countdown/TimeBetweenWaves);
     }
 
     IEnumerator SpawnWave()
     {
         waveIndex++;
-        
+        uiManager.UpdateWaveText();
+        uiManager.ShowProgressBarWave(false);
+
         for ( int i = 0; i < waveIndex; i++)
         {
             //Instantiate(particule, spawnPoint.position, spawnPoint.rotation);
             SpawnEnemy();
             yield return new WaitForSeconds(0.5f);
             EnemyController.isMove = true;
+            
         }
 
     }
