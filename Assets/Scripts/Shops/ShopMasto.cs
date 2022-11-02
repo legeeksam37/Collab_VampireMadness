@@ -6,7 +6,14 @@ using UnityEngine;
 public class ShopMasto : InteractionBase
 {
     [SerializeField]
-    private int buyCost;
+    private float buyCost;
+
+    [SerializeField]
+    private float boostValue;
+
+    [SerializeField]
+    private float priceEvolution;
+
 
     public override void Action(GameObject player)
     { 
@@ -17,9 +24,12 @@ public class ShopMasto : InteractionBase
 
         if(playerStats.Points >= buyCost)
         {
-            playerStats.SpellsPower *= 1.05f;
+            playerStats.SpellsPower *= boostValue;
             playerStats.UsePoints(buyCost);
             Debug.Log("Masto shop buy");
+
+            buyCost *= priceEvolution;
+            buyCost = Mathf.Round(buyCost);
         }
         else
         {
