@@ -22,9 +22,12 @@ public class EnemyController : MonoBehaviour
 
     public float cooldown;
 
-    public static bool isAttack;
 
     public static bool isMove;
+
+    private bool canMove;
+    private bool canAttack;
+    private bool inAttack;
 
     void Awake()
     {
@@ -36,14 +39,16 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         cooldown = 0;
-        isAttack = false;
-        isMove = false;
+
+        canAttack = true;
+        inAttack = false;
+        canMove = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isMove == true)
+        if(canMove)
         {
             agent.destination = movePositionTransform.position;
         }
@@ -51,19 +56,17 @@ public class EnemyController : MonoBehaviour
         GetNearestPlayer();
     }
 
-    void OnCollisionStay(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag == "Player")
         {
-            if (cooldown <= 0 && isAttack == false)
+            if(canAttack)
             {
                 player = collision.gameObject.GetComponent<PlayerStats>();
-                anim.SetTrigger("Attack");
-                isAttack = true;
-                isMove = false;
-                GetAnimClip();
+                StartCoroutine(Attack());
             }
         }
+        
         return;
     }
 
@@ -71,9 +74,7 @@ public class EnemyController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            anim.ResetTrigger("Attack");
             player = null;
-            CheckCooldown();
         }
         return;
     }
@@ -85,13 +86,15 @@ public class EnemyController : MonoBehaviour
             cooldown -= Time.deltaTime;
             if (cooldown <= 0)
             {
-                isAttack = false;
-                isMove = true;
+                canAttack = true;
+                inAttack = false;
+                canMove = true;
+                anim.ResetTrigger("Attack");
             }
         }
     }
 
-    void GetAnimClip()
+    void SetCooldown()
     {
         AnimationClip[] clips = anim.runtimeAnimatorController.animationClips;
         foreach (AnimationClip clip in clips)
@@ -110,10 +113,20 @@ public class EnemyController : MonoBehaviour
         {
             player.TakeDamage(enemyStats.damage);
         }
-        else
-        {
-            Debug.Log("Player trop loin");
-        }
+    }
+
+    IEnumerator Attack()
+    {
+        anim.SetTrigger("Attack");
+        canAttack = false;
+        inAttack = true;
+        canMove = false;
+        SetCooldown();
+        Debug.Log("Attaque !");
+
+        yield return new WaitForSeconds(0.3f);
+
+        anim.ResetTrigger("Attack");
     }
 
     private void GetNearestPlayer()

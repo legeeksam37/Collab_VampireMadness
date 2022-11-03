@@ -9,9 +9,9 @@ TagManager:
   - Bullet
   - WaveManager
   - Fireball
-  - Zombie
-  - Vampire
   - FollowCamera
+  - Enemy
+  - Zombie
   layers:
   - Default
   - TransparentFX
