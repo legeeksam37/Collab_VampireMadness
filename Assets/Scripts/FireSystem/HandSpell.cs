@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnergyBall : MonoBehaviour
+public class HandSpell : MonoBehaviour
 {
     [SerializeField]
     private float damage;
@@ -40,10 +40,11 @@ public class EnergyBall : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
         if(collision.gameObject.tag == "Vampire" || collision.gameObject.tag == "Zombie")
         {
             EnemyStats enemyStats = collision.gameObject.GetComponent<EnemyStats>();
-            enemyStats.PV -= damage;
+            enemyStats.TakeDamage(damage, stats);
         }
     }
 }

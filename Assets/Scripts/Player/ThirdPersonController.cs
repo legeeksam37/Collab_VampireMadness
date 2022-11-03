@@ -110,8 +110,8 @@ namespace StarterAssets
         [Header("Spell system")]
         public float _spellCooldown;
         public Transform _fireStart;
-        public Fireball _fireball;
-        public EnergyBall _energyBall;
+        public HandSpell _mainSpell;
+        public HandSpell _seconSpell;
 
         private const float _threshold = 0.01f;
 
@@ -311,13 +311,13 @@ namespace StarterAssets
             {
                 if(_spellCooldown <= 0)
                 {
-                    _fireball.LaunchBullet(_fireStart);
+                    _mainSpell.LaunchBullet(_fireStart);
                     _spellCooldown = 1;
 
                     if (SpellAudioClip.Length > 0)
                     {
                         var index = UnityEngine.Random.Range(0, SpellAudioClip.Length);
-                        AudioSource.PlayClipAtPoint(SpellAudioClip[index], transform.TransformPoint(_controller.center), 1);
+                        AudioSource.PlayClipAtPoint(SpellAudioClip[index], transform.TransformPoint(_controller.center), 0.5f);
                     }
                 }
             }
@@ -336,13 +336,13 @@ namespace StarterAssets
             {
                 if (_spellCooldown <= 0)
                 {
-                    _energyBall.LaunchBullet(_fireStart);
+                    _seconSpell.LaunchBullet(_fireStart);
                     _spellCooldown = 1;
 
                     if (SpellAudioClip.Length > 0)
                     {
                         var index = UnityEngine.Random.Range(0, SpellAudioClip.Length);
-                        AudioSource.PlayClipAtPoint(SpellAudioClip[index], transform.TransformPoint(_controller.center), 1);
+                        AudioSource.PlayClipAtPoint(SpellAudioClip[index], transform.TransformPoint(_controller.center), 0.5f);
                     }
                 }
             }

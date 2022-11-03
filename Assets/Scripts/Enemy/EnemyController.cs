@@ -49,7 +49,7 @@ public class EnemyController : MonoBehaviour
         }
         Debug.Log(cooldown);
         CheckCooldown();
-        Death();
+        //Death();
     }
 
     void Death()
