@@ -134,6 +134,9 @@ namespace StarterAssets
 
         private void Awake()
         {
+            // the player's own view
+            view = GetComponent<PhotonView>();
+            
             // get a reference to our main camera
             if (_mainCamera == null && view.IsMine)
             {
@@ -159,7 +162,6 @@ namespace StarterAssets
             // reset our timeouts on start
             _fallTimeoutDelta = FallTimeout;
 
-            view = GetComponent<PhotonView>();
         }
 
         private void Update()
