@@ -40,10 +40,10 @@ public class EnergyBall : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        if(collision.gameObject.tag == "Enemy")
+        if(collision.gameObject.tag == "Vampire" || collision.gameObject.tag == "Zombie")
         {
-            EnemyController enemyController = collision.gameObject.GetComponent<EnemyController>();
-            enemyController.life -= damage;
+            EnemyStats enemyStats = collision.gameObject.GetComponent<EnemyStats>();
+            enemyStats.PV -= damage;
         }
     }
 }
