@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2607376441866865542}
   - component: {fileID: 4966669685690919822}
   - component: {fileID: 4699468727747495507}
-  - component: {fileID: 6532177043790099174}
+  - component: {fileID: 8455110575747909335}
   m_Layer: 0
   m_Name: EnergyBall
   m_TagString: Fireball
@@ -116,7 +116,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &6532177043790099174
+--- !u!114 &8455110575747909335
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6462724731937009132}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91e66db6def79d247b3ac5f4880cab72, type: 3}
+  m_Script: {fileID: 11500000, guid: 5554cdbc413843c48b879b615b8d045f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 55
