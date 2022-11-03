@@ -18410,6 +18410,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WaveText: {fileID: 2041558728}
   WaveDelayProgress: {fileID: 247844250}
+  HealthBar: {fileID: 0}
   WaveSpawner: {fileID: 1218397173}
 --- !u!4 &473372723
 Transform:
@@ -65372,6 +65373,17 @@ PrefabInstance:
       propertyPath: _fireStart
       value: 
       objectReference: {fileID: 1693125863}
+    - target: {fileID: 6976412522085537356, guid: 73171dd58b0e4224e98d78df242f2698,
+        type: 3}
+      propertyPath: _energyBall
+      value: 
+      objectReference: {fileID: 6532177043790099174, guid: 962952c0fddb73b4fb05538a290e6ae7,
+        type: 3}
+    - target: {fileID: 6976412522085537356, guid: 73171dd58b0e4224e98d78df242f2698,
+        type: 3}
+      propertyPath: _spellCooldown
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7753758839992651005, guid: 73171dd58b0e4224e98d78df242f2698,
         type: 3}
       propertyPath: m_RootOrder
@@ -65427,7 +65439,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 170907365184056381, guid: 73171dd58b0e4224e98d78df242f2698, type: 3}
+    - {fileID: 1878733551, guid: 73171dd58b0e4224e98d78df242f2698, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 73171dd58b0e4224e98d78df242f2698, type: 3}
 --- !u!1001 &1713222538
 PrefabInstance:

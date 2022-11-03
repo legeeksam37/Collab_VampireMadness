@@ -25,7 +25,14 @@ namespace StarterAssets
         [Tooltip("Sprint speed of the character in m/s")]
         public float SprintSpeed = 5.335f;
 
+        // ============== SOUNDS ================= //
+        [Header("Player sounds")]
+        public AudioClip LandingAudioClip;
+        public AudioClip[] FootstepAudioClips;
+        [Range(0, 1)] public float FootstepAudioVolume = 0.5f;
 
+        public AudioClip[] SpellAudioClip;
+        // ======================================= //
 
         [Header("Player details")]
         [Tooltip("How fast the character turns to face movement direction")]
@@ -34,12 +41,6 @@ namespace StarterAssets
 
         [Tooltip("Acceleration and deceleration")]
         public float SpeedChangeRate = 10.0f;
-
-        public AudioClip LandingAudioClip;
-        public AudioClip[] FootstepAudioClips;
-        [Range(0, 1)] public float FootstepAudioVolume = 0.5f;
-
-        public AudioClip[] FirebalAudioClips;
 
         [Tooltip("The character uses its own gravity value. The engine default is -9.81f")]
         public float Gravity = -15.0f;
@@ -106,10 +107,11 @@ namespace StarterAssets
         private GameObject _mainCamera;
 
         // fire system
-        [Header("Fire system")]
-        public float _cooldown;
+        [Header("Spell system")]
+        public float _spellCooldown;
         public Transform _fireStart;
         public Fireball _fireball;
+        public EnergyBall _energyBall;
 
         private const float _threshold = 0.01f;
 
@@ -145,7 +147,8 @@ namespace StarterAssets
             _input = GetComponent<StarterAssetsInputs>();
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
             _playerInput = GetComponent<PlayerInput>();
-            _cooldown = 0;
+
+            _spellCooldown = 0;
 #else
 			Debug.LogError( "Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
 #endif
@@ -165,6 +168,7 @@ namespace StarterAssets
             GroundedCheck();
             Move();
             Fire();
+            SecondarySpell();
         }
 
         private void LateUpdate()
@@ -305,24 +309,53 @@ namespace StarterAssets
         {
             if(_input.fire)
             {
-                if(_cooldown <= 0)
+                if(_spellCooldown <= 0)
                 {
                     _fireball.LaunchBullet(_fireStart);
-                    _cooldown = 1;
+                    _spellCooldown = 1;
 
-                    if (FirebalAudioClips.Length > 0)
+                    if (SpellAudioClip.Length > 0)
                     {
-                        var index = UnityEngine.Random.Range(0, FirebalAudioClips.Length);
-                        AudioSource.PlayClipAtPoint(FirebalAudioClips[index], transform.TransformPoint(_controller.center), 1);
+                        var index = UnityEngine.Random.Range(0, SpellAudioClip.Length);
+                        AudioSource.PlayClipAtPoint(SpellAudioClip[index], transform.TransformPoint(_controller.center), 1);
                     }
                 }
             }
-            if(_cooldown > 0)
+            
+
+            if (_spellCooldown > 0)
             {
-                _cooldown -= Time.deltaTime;
+                _spellCooldown -= Time.deltaTime;
             }
             _input.fire = false;
         }
+
+        private void SecondarySpell()
+        {
+            if (_input.fireBis)
+            {
+                if (_spellCooldown <= 0)
+                {
+                    _energyBall.LaunchBullet(_fireStart);
+                    _spellCooldown = 1;
+
+                    if (SpellAudioClip.Length > 0)
+                    {
+                        var index = UnityEngine.Random.Range(0, SpellAudioClip.Length);
+                        AudioSource.PlayClipAtPoint(SpellAudioClip[index], transform.TransformPoint(_controller.center), 1);
+                    }
+                }
+            }
+
+
+            if (_spellCooldown > 0)
+            {
+                _spellCooldown -= Time.deltaTime;
+            }
+            _input.fireBis = false;
+        }
+
+
 
         private void MainGravity()
         {

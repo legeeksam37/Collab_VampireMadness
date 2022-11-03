@@ -11,6 +11,8 @@ public class UIManager : MonoBehaviour
     private GameObject WaveText;
     [SerializeField]
     private Slider WaveDelayProgress;
+    [SerializeField]
+    private Slider HealthBar;
 
     [SerializeField]
     private WaveSpawner WaveSpawner;
@@ -42,5 +44,10 @@ public class UIManager : MonoBehaviour
     {
         WaveDelayProgress.gameObject.SetActive(state);
 
+    }
+
+    public void UpdateHealthBar(float progression)
+    {
+        HealthBar.value = progression;
     }
 }

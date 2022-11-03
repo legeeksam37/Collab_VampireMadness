@@ -18,6 +18,5 @@ public class PlayerStats : MonoBehaviour
     }
 
     void Update(){
-        Debug.Log(PV);
     }
 }
