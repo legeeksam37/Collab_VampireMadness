@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,80 +8,109 @@ public class EnemyController : MonoBehaviour
 {
     [SerializeField] public Transform movePositionTransform;
 
-    [SerializeField] public CapsuleCollider cap;
-
     [SerializeField] private Animator anim;
 
-    private WaveSpawner waveSpawner;
+    [SerializeField] private AnimationClip clip;
 
     private NavMeshAgent agent;
 
+    private EnemyStats enemyStats;
+
+    PlayerStats nearestPlayer;
+
     public float cooldown;
 
-    private float damage;
+    public static bool isAttack;
 
-    public float life;
+    public static bool isMove;
 
-    public static bool isMove = false;
-
-    private void Awake()
+    void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        anim = GetComponent<Animator>();
+        enemyStats = GetComponent<EnemyStats>();
         movePositionTransform = GameObject.Find(movePositionTransform.name).transform;
-        waveSpawner = GameObject.FindWithTag("WaveManager").GetComponent<WaveSpawner>();
-        life = 100;
+    }
+
+    void Start()
+    {
+        cooldown = 0;
+        isAttack = false;
+        isMove = false;
     }
 
     // Update is called once per frame
     void Update()
-    { 
+    {
         if (isMove == true)
         {
             agent.destination = movePositionTransform.position;
         }
-        if (Vector3.Distance(movePositionTransform.position, transform.position) <= 1){
-            //CollisionEnter();
-        }
-        Death();
-
+        CheckCooldown();
     }
 
-    //void CollisionEnter()
-    //{
-    //    anim.SetTrigger("Attack");
-    //    movePositionTransform.GetComponent<PlayerStats>().PV -= 15;
-    //    isMove = false;
-    //}
-
-    void Death()
+    void OnCollisionStay(Collision collision)
     {
-        if(life <= 0)
+        if(collision.gameObject.tag == "Player")
         {
-            if(waveSpawner.EnemiesAlive != 0)
+            if (cooldown <= 0 && isAttack == false)
             {
-                waveSpawner.EnemiesAlive -= 1;
-            }    
-            Destroy(gameObject);
+                nearestPlayer = collision.gameObject.GetComponent<PlayerStats>();
+                anim.SetTrigger("Attack");
+                isAttack = true;
+                isMove = false;
+                GetAnimClip();
+            }
+        }
+        return;
+    }
+
+    void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            anim.ResetTrigger("Attack");
+            nearestPlayer = null;
+            CheckCooldown();
+        }
+        return;
+    }
+
+    void CheckCooldown()
+    {
+        if (cooldown > 0)
+        {
+            cooldown -= Time.deltaTime;
+            if (cooldown <= 0)
+            {
+                isAttack = false;
+                isMove = true;
+            }
         }
     }
 
-    //void OnTriggerEnter(Collider col){
-    //    if (col.tag == "player"){
-    //        Debug.Log("hello");
-    //    }
+    void GetAnimClip()
+    {
+        AnimationClip[] clips = anim.runtimeAnimatorController.animationClips;
+        foreach (AnimationClip clip in clips)
+        {
+            if(clip.name == "Attack")
+            {
+                cooldown = clip.length;
+                break;
+            }
+        }
+    }
 
-    //    if (col.tag == "untagged"){
-    //        cap.isTrigger = true;
-    //        Debug.Log("hello");
-    //    }
-    //}
-
-    //void OnCollisionExit(Collision collision)
-    //{
-    //    if (collision.gameObject.tag == "Player"){
-    //        anim.ResetTrigger("Attack");
-    //        isMove = true;
-    //    }
-    //}
-
+    public void DealDamage()
+    {
+        if(nearestPlayer != null)
+        {
+            nearestPlayer.TakeDamage(enemyStats.damage);
+        }
+        else
+        {
+            Debug.Log("Player trop loin");
+        }
+    }
 }

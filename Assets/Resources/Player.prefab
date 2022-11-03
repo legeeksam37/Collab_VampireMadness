@@ -1979,8 +1979,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSpeed: 2
   SprintSpeed: 5.335
-  RotationSmoothTime: 0.12
-  SpeedChangeRate: 10
   LandingAudioClip: {fileID: 8300000, guid: ff697d3070687ce4583faa0561a145a2, type: 3}
   FootstepAudioClips:
   - {fileID: 8300000, guid: 9f472551c13113f4e9000fdfcd995a70, type: 3}
@@ -1993,10 +1991,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6fc97372a80b25d41b5e81130f9e873a, type: 3}
   - {fileID: 8300000, guid: aa3f35022a35ae34790b8f926a556497, type: 3}
   FootstepAudioVolume: 0.3
-  FirebalAudioClips:
-  - {fileID: 8300000, guid: d2c3b794d018f2848ab7b4d9d952b5c2, type: 3}
-  - {fileID: 8300000, guid: 39f2d928e5b188f4baf5d297444c20c3, type: 3}
-  - {fileID: 8300000, guid: 4c25034f9161c6c48ae58e64d2bb3c04, type: 3}
+  SpellAudioClip: []
+  RotationSmoothTime: 0.12
+  SpeedChangeRate: 10
   Gravity: -15
   FallTimeout: 0.15
   Grounded: 1
@@ -2010,10 +2007,11 @@ MonoBehaviour:
   BottomClamp: -30
   CameraAngleOverride: 0
   LockCameraPosition: 0
-  _cooldown: 0
+  _spellCooldown: 0
   _fireStart: {fileID: 7877080153355509561}
   _fireball: {fileID: -4069397903096368691, guid: 09a95e64686f5574fb8354f3dcc45a06,
     type: 3}
+  _energyBall: {fileID: 0}
 --- !u!114 &878586075164261559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2048,6 +2046,7 @@ MonoBehaviour:
   sprint: 0
   interaction: 0
   fire: 0
+  fireBis: 0
   analogMovement: 0
   cursorLocked: 1
   cursorInputForLook: 1

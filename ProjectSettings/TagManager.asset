@@ -7,8 +7,10 @@ TagManager:
   - CinemachineTarget
   - Interactible
   - Bullet
-  - Enemy
   - WaveManager
+  - Fireball
+  - Zombie
+  - Vampire
   layers:
   - Default
   - TransparentFX
