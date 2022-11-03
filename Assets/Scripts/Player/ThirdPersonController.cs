@@ -330,7 +330,8 @@ namespace StarterAssets
 
         private void LaunchSpell()
         {
-            switch(spellIndex)
+            _animator.ResetTrigger("Spell_Cast");
+            switch (spellIndex)
             {
                 case 1:
                     _mainSpell.LaunchBullet(_fireStart);
@@ -340,7 +341,7 @@ namespace StarterAssets
                     {
                         var index = UnityEngine.Random.Range(0, SpellAudioClip.Length);
                         AudioSource.PlayClipAtPoint(SpellAudioClip[index], transform.TransformPoint(_controller.center), 0.5f);
-                        _animator.ResetTrigger("Spell_Cast");
+                        
                     }
                     break;
 
@@ -365,6 +366,7 @@ namespace StarterAssets
                 {
                     _animator.SetTrigger("Spell_Cast");
                     spellIndex = 2;
+                    
                 }
             }
 

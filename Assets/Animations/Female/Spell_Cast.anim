@@ -66626,7 +66626,8 @@ AnimationClip:
   - time: 0.81666666
     functionName: LaunchSpell
     data: 
-    objectReferenceParameter: {fileID: 0}
+    objectReferenceParameter: {fileID: 11500000, guid: 26e54e5a728a9234ab24fcf1460ed8a2,
+      type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
