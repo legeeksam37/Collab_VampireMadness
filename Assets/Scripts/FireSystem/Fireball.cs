@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class Fireball : MonoBehaviour
 {
+    [SerializeField]
     private float damage;
+
+    [SerializeField]
+    private float launchForce;
+
     private PlayerStats stats;
 
     void Start()
     {
-        damage = 50;
         GameObject player = GameObject.FindWithTag("Player");
         if (player != null)
         {
@@ -25,9 +29,8 @@ public class Fireball : MonoBehaviour
 
     public void LaunchBullet(Transform position)
     {
-        int _throwForce = 1000;
         GameObject _newBall = Instantiate(gameObject, position.position, position.rotation);
-        _newBall.GetComponent<Rigidbody>().AddForce(position.forward * _throwForce);
+        _newBall.GetComponent<Rigidbody>().AddForce(position.forward * launchForce);
         _newBall.gameObject.transform.SetParent(GameObject.Find("GameObjects").gameObject.transform);
 
     }
