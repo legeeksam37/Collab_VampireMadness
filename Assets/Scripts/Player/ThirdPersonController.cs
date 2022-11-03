@@ -307,8 +307,18 @@ namespace StarterAssets
             }
         }
 
+        [PunRPC]
+        void ChatMessage(string a, string b, PhotonMessageInfo info)
+        {
+            // the photonView.RPC() call is the same as without the info parameter.
+            // the info.Sender is the player who called the RPC.
+            Debug.LogFormat("Info: {0} {1} {2}", info.Sender, info.photonView, info.SentServerTime);
+        }
+
         private void UpdateAnimation()
         {
+            
+
             Vector3 movementVector = transform.position - m_LastPosition;
 
             float speed = Vector3.Dot( movementVector.normalized, transform.forward );
@@ -319,7 +329,7 @@ namespace StarterAssets
 
             m_LastPosition = transform.position;
         }
-        
+
         private void Interaction(Collider other)
         {
             if(_input.interaction)
