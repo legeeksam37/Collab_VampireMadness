@@ -11,7 +11,6 @@ TagManager:
   - Fireball
   - Zombie
   - Vampire
-  - FollowCamera
   layers:
   - Default
   - TransparentFX
