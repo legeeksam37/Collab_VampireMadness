@@ -3377,7 +3377,6 @@ GameObject:
   - component: {fileID: -7623319462648478729}
   - component: {fileID: -1986808539004596230}
   - component: {fileID: 9084787339736364890}
-  - component: {fileID: -7650937838828043616}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -3416,7 +3415,7 @@ Animator:
   m_GameObject: {fileID: 7261230082137554465}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: f72d24e9f054ac24d866ba6963fa63e8, type: 3}
-  m_Controller: {fileID: 9100000, guid: 47ca5f27a2501104f80155c6a896e278, type: 2}
+  m_Controller: {fileID: 9100000, guid: 118d492fb1bca2d4dbfc74b81d20a9be, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3685,7 +3684,6 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: -1986808539004596230}
   - {fileID: 9084787339736364890}
-  - {fileID: -7650937838828043616}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -3736,26 +3734,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowLayerWeightsInspector: 1
   ShowParameterInspector: 1
-  m_SynchronizeParameters: []
+  m_SynchronizeParameters:
+  - Type: 1
+    SynchronizeType: 2
+    Name: Speed
+  - Type: 1
+    SynchronizeType: 2
+    Name: MotionSpeed
+  - Type: 4
+    SynchronizeType: 2
+    Name: Grounded
+  - Type: 4
+    SynchronizeType: 2
+    Name: Jump
+  - Type: 4
+    SynchronizeType: 2
+    Name: FreeFall
+  - Type: 9
+    SynchronizeType: 2
+    Name: SpellCast
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
---- !u!114 &-7650937838828043616
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7261230082137554465}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizeVelocity: 1
-  m_SynchronizeAngularVelocity: 1
-  m_TeleportEnabled: 0
-  m_TeleportIfDistanceGreaterThan: 3
+  - SynchronizeType: 0
+    LayerIndex: 1
 --- !u!1 &7281067314498973515
 GameObject:
   m_ObjectHideFlags: 0

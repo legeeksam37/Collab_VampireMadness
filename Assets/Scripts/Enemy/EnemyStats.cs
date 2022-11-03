@@ -16,9 +16,12 @@ public class EnemyStats : MonoBehaviour
 
     private WaveSpawner waveSpawner;
 
+    public PhotonView view;
+
     void Start()
     {
         waveSpawner = GameObject.FindWithTag("WaveManager").GetComponent<WaveSpawner>();
+        view = GetComponent<PhotonView>();
     }
 
 
@@ -28,6 +31,13 @@ public class EnemyStats : MonoBehaviour
 
         if (PV <= 0)
         {
+            view.RPC("Destroy", RpcTarget.All, playerDealDamage);
+        }
+    }
+
+    [PunRPC]
+    public void networkDestroy(PlayerStats playerDealDamage){
+        if (waveSpawner != null){
             if (waveSpawner.EnemiesAlive != 0)
             {
                 waveSpawner.EnemiesAlive -= 1;
