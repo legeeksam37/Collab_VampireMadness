@@ -7,6 +7,31 @@ using Photon.Pun;
 
 public class WaveSpawner : MonoBehaviour
 {
+    private static WaveSpawner instance;
+    public static WaveSpawner Instance    
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<WaveSpawner>();
+            }
+            return instance;
+        }
+    }
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+    }
+
     private UIManager uiManager;
 
     public List<GameObject> spawnedEnemy = new List<GameObject>();
@@ -103,8 +128,6 @@ private void Start()
         int random = Random.Range(0, spawnedEnemy.Count);
         int random1 = Random.Range(0, spawningPoints.Length);
         GameObject _newEnemy = PhotonNetwork.Instantiate(spawnedEnemy[random].name, spawningPoints[random1].transform.position, spawningPoints[random1].rotation);
-
-
         EnemiesAlive++;
     }
 }

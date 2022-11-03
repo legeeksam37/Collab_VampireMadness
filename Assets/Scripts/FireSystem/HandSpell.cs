@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class HandSpell : MonoBehaviour
 {
@@ -29,16 +30,15 @@ public class HandSpell : MonoBehaviour
 
     public void LaunchBullet(Transform position)
     {
-        GameObject _newBall = Instantiate(gameObject, position.position, position.rotation);
+        GameObject _newBall = PhotonNetwork.Instantiate(gameObject.name, position.position, position.rotation);
         _newBall.GetComponent<Rigidbody>().AddForce(position.forward * launchForce);
-        _newBall.gameObject.transform.SetParent(GameObject.Find("GameObjects").gameObject.transform);
 
     }
     private void OnTriggerEnter(Collider collision)
     {
         if (collision != null)
         {
-            Destroy(gameObject);
+            PhotonNetwork.Destroy(gameObject);
         }
 
         if(collision.gameObject.tag == "Enemy")

@@ -43,31 +43,6 @@ public class PlayerSpawner : MonoBehaviour
     public float minZ;
     public float maxZ;
 
-    private static PlayerSpawner instance;
-    public static PlayerSpawner Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = FindObjectOfType<PlayerSpawner>();
-            }
-            return instance;
-        }
-    }
-
-    private void Awake()
-    {
-        if (instance != null)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            instance = this;
-        }
-    }
-
     // Start is called before the first frame update
     void Start()
     {
@@ -75,13 +50,13 @@ public class PlayerSpawner : MonoBehaviour
         GameObject player = PhotonNetwork.Instantiate(playerPrefab.name, randomPosition, Quaternion.identity);
 
         if (PhotonNetwork.IsMasterClient == true) {
-        GameObject wave = PhotonNetwork.Instantiate(waveManagerPrefab.name, transform.position, Quaternion.identity);
+            GameObject wave = PhotonNetwork.Instantiate(waveManagerPrefab.name, transform.position, Quaternion.identity);
         }
     }
 
     public void Respawn(GameObject Player)
     {
-        Destroy(Player.gameObject);
+        PhotonNetwork.Destroy(Player.gameObject);
         Vector3 randomPosition = new Vector3(Random.Range(minX, maxX), Random.Range(minY, maxY), Random.Range(minZ, maxZ));
         GameObject player = PhotonNetwork.Instantiate(playerPrefab.name, randomPosition, Quaternion.identity);
         SceneManager.LoadScene("MainLevel");

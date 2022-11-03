@@ -51,9 +51,8 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isMove == true && PhotonNetwork.IsMasterClient == true)
         GetNearestPlayer();
-        if (canMove)
+        if (canMove && PhotonNetwork.IsMasterClient == true)
         {
             agent.destination = movePositionTransform.position;
         }
@@ -143,9 +142,7 @@ public class EnemyController : MonoBehaviour
             {
                 movePositionTransform = i.transform;
                 //isMove = false;
-            }
-            else
-            {
+            } else {
                 int _tempRand = UnityEngine.Random.Range(0, players.Length);
                 movePositionTransform = players[_tempRand].transform;
             }

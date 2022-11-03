@@ -55,6 +55,7 @@ MonoBehaviour:
   TimeBetweenWaves: 5
   waveIndex: 0
   EnemiesAlive: 0
+  view: {fileID: 0}
 --- !u!114 &4216210314249471382
 MonoBehaviour:
   m_ObjectHideFlags: 0
