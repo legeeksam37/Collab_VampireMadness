@@ -68,7 +68,7 @@ public class EnemyController : MonoBehaviour
             if (cooldown <= 0 && isAttack == false)
             {
                 PlayerStats stats = collision.gameObject.GetComponent<PlayerStats>();
-                stats.PV -= enemyStats.damage;
+                stats.TakeDamage(enemyStats.damage);
                 isAttack = true;
                 cooldown = 1;
             }
