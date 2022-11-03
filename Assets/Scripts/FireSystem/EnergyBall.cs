@@ -18,7 +18,6 @@ public class EnergyBall : MonoBehaviour
         if (player != null)
         {
             stats = player.GetComponent<PlayerStats>();
-            Debug.Log(stats);
         }
     }
 
@@ -41,7 +40,7 @@ public class EnergyBall : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        if (collision.gameObject.tag == "Vampire" || collision.gameObject.tag == "Zombie")
+        if(collision.gameObject.tag == "Vampire" || collision.gameObject.tag == "Zombie")
         {
             EnemyStats enemyStats = collision.gameObject.GetComponent<EnemyStats>();
             enemyStats.PV -= damage;

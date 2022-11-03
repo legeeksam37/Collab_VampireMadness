@@ -79,9 +79,9 @@ namespace StarterAssets
         {
             fire = newFireState;
         }
-        public void FireBisInput(bool newFireState)
+        public void FireBisInput(bool newFireBisState)
         {
-            fireBis = newFireState;
+            fireBis = newFireBisState;
         }
 
 
