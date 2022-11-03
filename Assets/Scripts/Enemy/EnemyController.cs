@@ -48,12 +48,12 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(canMove)
+        GetNearestPlayer();
+        if (canMove)
         {
             agent.destination = movePositionTransform.position;
         }
         CheckCooldown();
-        GetNearestPlayer();
     }
 
     void OnCollisionEnter(Collision collision)
