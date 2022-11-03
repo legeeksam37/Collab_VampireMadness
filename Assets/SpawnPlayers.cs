@@ -9,10 +9,10 @@ public class SpawnPlayers : MonoBehaviour
     public GameObject playerPrefab;
 
     public float minX;
-    public float minY;
-    public float minZ;
     public float maxX;
+    public float minY;
     public float maxY;
+    public float minZ;
     public float maxZ;
 
     // Start is called before the first frame update
