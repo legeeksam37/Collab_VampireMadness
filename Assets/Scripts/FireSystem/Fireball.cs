@@ -18,6 +18,7 @@ public class Fireball : MonoBehaviour
         if (player != null)
         {
             stats = player.GetComponent<PlayerStats>();
+            Debug.Log(stats);
         }
     }
 
@@ -40,7 +41,7 @@ public class Fireball : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        if(collision.gameObject.tag == "Enemy")
+        if(collision.gameObject.tag == "Vampire" || collision.gameObject.tag == "Zombie")
         {
             EnemyStats enemyStats = collision.gameObject.GetComponent<EnemyStats>();
             enemyStats.PV -= damage;
