@@ -102,7 +102,7 @@ namespace StarterAssets
         private int _animIDMotionSpeed;
 
         //Photon
-        PhotonView view;
+        private PhotonView view;
 
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
         private PlayerInput _playerInput;
@@ -142,6 +142,7 @@ namespace StarterAssets
         {
             // the player's own view
             view = GetComponent<PhotonView>();
+            //Debug.Log(view.viewID);
             
             if (_mainCamera == null)
             {
@@ -182,13 +183,16 @@ namespace StarterAssets
                 GroundedCheck();
                 Move();
                 Fire();
+                SecondarySpell();
+            } else {
+
             }
 
-            MainGravity();
-            GroundedCheck();
-            Move();
-            Fire();
-            SecondarySpell();
+            // MainGravity();
+            // GroundedCheck();
+            // Move();
+            // Fire();
+            // SecondarySpell();
         }
 
         private void LateUpdate()
@@ -306,29 +310,6 @@ namespace StarterAssets
                 _animator.SetFloat(_animIDSpeed, _animationBlend);
                 _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
             }
-        }
-
-        [PunRPC]
-        void ChatMessage(string a, string b, PhotonMessageInfo info)
-        {
-            // the photonView.RPC() call is the same as without the info parameter.
-            // the info.Sender is the player who called the RPC.
-            Debug.LogFormat("Info: {0} {1} {2}", info.Sender, info.photonView, info.SentServerTime);
-        }
-
-        private void UpdateAnimation()
-        {
-            
-
-            Vector3 movementVector = transform.position - m_LastPosition;
-
-            float speed = Vector3.Dot( movementVector.normalized, transform.forward );
-            float direction = Vector3.Dot( movementVector.normalized, transform.right );
-
-            _animator.SetFloat( "Speed", speed );
-            _animator.SetFloat( "Direction", direction );
-
-            m_LastPosition = transform.position;
         }
 
         private void Interaction(Collider other)

@@ -3,15 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Photon.Pun;
 
 public class WaveSpawner : MonoBehaviour
 {
-
-    [SerializeField]
     private UIManager uiManager;
 
     public List<GameObject> spawnedEnemy = new List<GameObject>();
-    public List<Transform> spawningPoints = new List<Transform>();
+    public Transform[] spawningPoints = new Transform[0];
 
     //[SerializeField]
     //private Transform ennemyPrefab;
@@ -30,7 +29,26 @@ public class WaveSpawner : MonoBehaviour
 
     public int EnemiesAlive = 0;
 
+    public PhotonView view;
 
+private void Start()
+    {
+       if(PhotonNetwork.IsMasterClient == true)
+        {
+            gameObject.SetActive(true);
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
+        uiManager = GameObject.FindObjectOfType<UIManager>();
+        GameObject[] _tempSpawn = GameObject.FindGameObjectsWithTag("Spawner");
+        for(int i = 0; i < _tempSpawn.Length; i++)
+        {
+            spawningPoints[i] = _tempSpawn[i].transform;
+        }
+        view = GetComponent<PhotonView>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -49,7 +67,7 @@ public class WaveSpawner : MonoBehaviour
 
         if (countdown <= 0f)
         {
-           StartCoroutine(SpawnWave());
+            view.RPC("startCoroutine", RpcTarget.All);
             countdown = TimeBetweenWaves;
             //return;
         }
@@ -58,11 +76,17 @@ public class WaveSpawner : MonoBehaviour
         uiManager.UpdateProgressBarWave(countdown/TimeBetweenWaves);
     }
 
+    [PunRPC]
+    public void startCoroutine(){
+        StartCoroutine("SpawnWave");
+    }
+
     IEnumerator SpawnWave()
     {
         waveIndex++;
-        uiManager.UpdateWaveText();
-        uiManager.ShowProgressBarWave(false);
+        Debug.Log("hello");
+        // uiManager.UpdateWaveText();
+        // uiManager.ShowProgressBarWave(false);
 
         for ( int i = 0; i < waveIndex; i++)
         {
@@ -78,10 +102,9 @@ public class WaveSpawner : MonoBehaviour
     void SpawnEnemy()
     {
         int random = Random.Range(0, spawnedEnemy.Count);
-        int random1 = Random.Range(0, spawningPoints.Count);
+        int random1 = Random.Range(0, spawningPoints.Length);
+        GameObject _newEnemy = PhotonNetwork.Instantiate(spawnedEnemy[random].name, spawningPoints[random1].transform.position, spawningPoints[random1].rotation);
 
-        GameObject _newEnemy = Instantiate(spawnedEnemy[random], spawningPoints[random1].transform.position, spawningPoints[random1].rotation);
-        _newEnemy.gameObject.transform.SetParent(GameObject.Find("GameObjects").gameObject.transform);
 
         EnemiesAlive++;
     }

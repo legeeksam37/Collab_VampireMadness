@@ -10,12 +10,17 @@ public class PlayerStats : MonoBehaviour
 
     [Header("Player stats")]
 
-    public float PV = 100f;
+    public float PV = 1000000000f;
     
     public float Points = 0f;
 
     public float SpellsPower = 1f;
 
+    private void Start()
+    {
+        hudManager = GameObject.FindObjectOfType<UIManager>();
+        Debug.Log(this.gameObject.name);
+    }
 
     void Update()
     {
@@ -36,7 +41,7 @@ public class PlayerStats : MonoBehaviour
     {
         if(PV <= 0f)
         {
-            SceneManager.LoadScene("MainLevel");
+            PlayerSpawner.Instance.Respawn(this.gameObject);
         }
     }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class EnemyStats : MonoBehaviour
 {
@@ -33,7 +34,7 @@ public class EnemyStats : MonoBehaviour
             }
 
             playerDealDamage.AddPoints(pointsOnDeath);
-            Destroy(gameObject);
+            PhotonNetwork.Destroy(gameObject);
         }
     }
 }

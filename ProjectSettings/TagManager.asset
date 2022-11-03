@@ -12,6 +12,7 @@ TagManager:
   - Zombie
   - Vampire
   - FollowCamera
+  - Spawner
   layers:
   - Default
   - TransparentFX

@@ -3,15 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Photon.Pun;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] public Transform movePositionTransform;
-
     [SerializeField] private Animator anim;
 
     [SerializeField] private AnimationClip clip;
 
+    private Transform movePositionTransform;
+    
     private NavMeshAgent agent;
 
     private EnemyStats enemyStats;
@@ -24,12 +25,15 @@ public class EnemyController : MonoBehaviour
 
     public static bool isMove;
 
+    private PhotonView photonView;
+
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         enemyStats = GetComponent<EnemyStats>();
         movePositionTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        photonView = GetComponent<PhotonView>();
     }
 
     void Start()
@@ -42,7 +46,7 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isMove == true)
+        if (isMove == true && PhotonNetwork.IsMasterClient == true)
         {
             agent.destination = movePositionTransform.position;
         }
