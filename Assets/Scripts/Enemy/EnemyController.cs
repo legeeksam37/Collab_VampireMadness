@@ -29,7 +29,7 @@ public class EnemyController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         enemyStats = GetComponent<EnemyStats>();
-        movePositionTransform = GameObject.Find(movePositionTransform.name).transform;
+        movePositionTransform = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     void Start()
