@@ -147,14 +147,8 @@ namespace StarterAssets
             {
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
                 _followCamera = GameObject.FindGameObjectWithTag("FollowCamera");
-                if (_followCamera.transform.parent == this)
-                {
-                    CinemachineBrain _tempCamera = _mainCamera.GetComponent<CinemachineBrain>();
-                    _tempCamera.ManualUpdate();
-                }
                 CinemachineVirtualCamera _tempFollow = _followCamera.GetComponent<CinemachineVirtualCamera>();
                 _tempFollow.Follow = GameObject.Find("PlayerCameraRoot").transform;
-
             }
         }
 

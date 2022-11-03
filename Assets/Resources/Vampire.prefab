@@ -841,9 +841,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dba7c9e234087548b925a70c9ebc879, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movePositionTransform: {fileID: 7753758839992651005, guid: 73171dd58b0e4224e98d78df242f2698,
+  movePositionTransform: {fileID: 8038576674318591131, guid: 0636111d99271ba4ab1cf305220c5d23,
     type: 3}
   anim: {fileID: -1544666514636293634}
+  clip: {fileID: 0}
   cooldown: 0
 --- !u!114 &6559619991955367546
 MonoBehaviour:
