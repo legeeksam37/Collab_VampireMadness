@@ -21,7 +21,6 @@ public class EnemyStats : MonoBehaviour
     void Start()
     {
         waveSpawner = GameObject.FindWithTag("WaveManager").GetComponent<WaveSpawner>();
-        view = GetComponent<PhotonView>();
     }
 
 
@@ -31,19 +30,19 @@ public class EnemyStats : MonoBehaviour
 
         if (PV <= 0)
         {
-            view.RPC("Destroy", RpcTarget.All, playerDealDamage);
+            view = GetComponent<PhotonView>();
+            view.RPC("networkDestroy", RpcTarget.All);
+            playerDealDamage.AddPoints(pointsOnDeath);
         }
     }
 
     [PunRPC]
-    public void networkDestroy(PlayerStats playerDealDamage){
-        if (waveSpawner != null){
+    public void networkDestroy(){
+        if (waveSpawner != null && PhotonNetwork.IsMasterClient == true){
             if (waveSpawner.EnemiesAlive != 0)
             {
                 waveSpawner.EnemiesAlive -= 1;
             }
-
-            playerDealDamage.AddPoints(pointsOnDeath);
             PhotonNetwork.Destroy(gameObject);
         }
     }

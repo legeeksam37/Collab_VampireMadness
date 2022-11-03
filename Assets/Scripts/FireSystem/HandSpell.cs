@@ -13,6 +13,8 @@ public class HandSpell : MonoBehaviour
 
     private PlayerStats stats;
 
+    public PhotonView view;
+
     void Start()
     {
         GameObject player = GameObject.FindWithTag("Player");
@@ -20,6 +22,7 @@ public class HandSpell : MonoBehaviour
         {
             stats = player.GetComponent<PlayerStats>();
         }
+        view = GetComponent<PhotonView>();
     }
 
     // Update is called once per frame
@@ -36,7 +39,7 @@ public class HandSpell : MonoBehaviour
     }
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision != null)
+        if (collision != null && view.IsMine == true)
         {
             PhotonNetwork.Destroy(gameObject);
         }
