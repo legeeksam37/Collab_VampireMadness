@@ -39,8 +39,8 @@ public class Fireball : MonoBehaviour
         }
         if(collision.gameObject.tag == "Enemy")
         {
-            EnemyController enemyController = collision.gameObject.GetComponent<EnemyController>();
-            enemyController.life -= damage;
+            EnemyStats enemyStats = collision.gameObject.GetComponent<EnemyStats>();
+            enemyStats.PV -= damage;
         }
     }
 }
