@@ -2358,7 +2358,7 @@ MonoBehaviour:
   BottomClamp: -30
   CameraAngleOverride: 0
   LockCameraPosition: 0
-  _spellCooldown: 1
+  _spellCooldown: 0
   _fireStart: {fileID: 6267589989799761725}
   _mainSpell: {fileID: 0}
   _seconSpell: {fileID: 0}
