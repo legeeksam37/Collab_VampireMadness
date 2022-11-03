@@ -53,7 +53,6 @@ private void Start()
     // Update is called once per frame
     void Update()
     {
-
         if (EnemiesAlive > 0)
         {
 //            Debug.Log(EnemiesAlive);

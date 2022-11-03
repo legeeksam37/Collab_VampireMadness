@@ -13,59 +13,64 @@ public class EnemyController : MonoBehaviour
 
     private Transform movePositionTransform;
     
+    public GameObject[] players = new GameObject[0];
+
     private NavMeshAgent agent;
 
     private EnemyStats enemyStats;
 
-    PlayerStats nearestPlayer;
+    PlayerStats player;
 
     public float cooldown;
 
-    public static bool isAttack;
 
     public static bool isMove;
 
     private PhotonView photonView;
+    private bool canMove;
+    private bool canAttack;
+    private bool inAttack;
 
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         enemyStats = GetComponent<EnemyStats>();
-        movePositionTransform = GameObject.FindGameObjectWithTag("Player").transform;
         photonView = GetComponent<PhotonView>();
     }
 
     void Start()
     {
         cooldown = 0;
-        isAttack = false;
-        isMove = false;
+
+        canAttack = true;
+        inAttack = false;
+        canMove = true;
     }
 
     // Update is called once per frame
     void Update()
     {
         if (isMove == true && PhotonNetwork.IsMasterClient == true)
+        GetNearestPlayer();
+        if (canMove)
         {
             agent.destination = movePositionTransform.position;
         }
         CheckCooldown();
     }
 
-    void OnCollisionStay(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag == "Player")
         {
-            if (cooldown <= 0 && isAttack == false)
+            if(canAttack)
             {
-                nearestPlayer = collision.gameObject.GetComponent<PlayerStats>();
-                anim.SetTrigger("Attack");
-                isAttack = true;
-                isMove = false;
-                GetAnimClip();
+                player = collision.gameObject.GetComponent<PlayerStats>();
+                StartCoroutine(Attack());
             }
         }
+        
         return;
     }
 
@@ -73,9 +78,7 @@ public class EnemyController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            anim.ResetTrigger("Attack");
-            nearestPlayer = null;
-            CheckCooldown();
+            player = null;
         }
         return;
     }
@@ -87,13 +90,15 @@ public class EnemyController : MonoBehaviour
             cooldown -= Time.deltaTime;
             if (cooldown <= 0)
             {
-                isAttack = false;
-                isMove = true;
+                canAttack = true;
+                inAttack = false;
+                canMove = true;
+                anim.ResetTrigger("Attack");
             }
         }
     }
 
-    void GetAnimClip()
+    void SetCooldown()
     {
         AnimationClip[] clips = anim.runtimeAnimatorController.animationClips;
         foreach (AnimationClip clip in clips)
@@ -108,13 +113,42 @@ public class EnemyController : MonoBehaviour
 
     public void DealDamage()
     {
-        if(nearestPlayer != null)
+        if(player != null)
         {
-            nearestPlayer.TakeDamage(enemyStats.damage);
+            player.TakeDamage(enemyStats.damage);
         }
-        else
+    }
+
+    IEnumerator Attack()
+    {
+        anim.SetTrigger("Attack");
+        canAttack = false;
+        inAttack = true;
+        canMove = false;
+        SetCooldown();
+        Debug.Log("Attaque !");
+
+        yield return new WaitForSeconds(0.3f);
+
+        anim.ResetTrigger("Attack");
+    }
+
+    private void GetNearestPlayer()
+    {
+        players = GameObject.FindGameObjectsWithTag("Player");
+        foreach(GameObject i in players)
         {
-            Debug.Log("Player trop loin");
+            float _tempPos = Vector3.Distance(i.transform.position, transform.position);
+            if(_tempPos < 2)
+            {
+                movePositionTransform = i.transform;
+                //isMove = false;
+            }
+            else
+            {
+                int _tempRand = UnityEngine.Random.Range(0, players.Length);
+                movePositionTransform = players[_tempRand].transform;
+            }
         }
     }
 }

@@ -125,6 +125,8 @@ namespace StarterAssets
 
         private bool _hasAnimator;
 
+        private int spellIndex = 0;
+
         private bool IsCurrentDeviceMouse
         {
             get
@@ -182,7 +184,7 @@ namespace StarterAssets
                 MainGravity();
                 GroundedCheck();
                 Move();
-                Fire();
+                MainSpell();
                 SecondarySpell();
             } else {
 
@@ -329,20 +331,14 @@ namespace StarterAssets
             _input.interaction = false;
         }
 
-        private void Fire()
+        private void MainSpell()
         {
             if(_input.fire)
             {
                 if(_spellCooldown <= 0)
                 {
-                    _mainSpell.LaunchBullet(_fireStart);
-                    _spellCooldown = 1;
-
-                    if (SpellAudioClip.Length > 0)
-                    {
-                        var index = UnityEngine.Random.Range(0, SpellAudioClip.Length);
-                        AudioSource.PlayClipAtPoint(SpellAudioClip[index], transform.TransformPoint(_controller.center), 0.5f);
-                    }
+                    _animator.SetTrigger("SpellCast");
+                    spellIndex = 1;
                 }
             }
             
@@ -360,15 +356,10 @@ namespace StarterAssets
             {
                 if (_spellCooldown <= 0)
                 {
-                    _seconSpell.LaunchBullet(_fireStart);
-                    _spellCooldown = 1;
-
-                    if (SpellAudioClip.Length > 0)
-                    {
-                        var index = UnityEngine.Random.Range(0, SpellAudioClip.Length);
-                        AudioSource.PlayClipAtPoint(SpellAudioClip[index], transform.TransformPoint(_controller.center), 0.5f);
-                    }
+                    _animator.SetTrigger("SpellCast");
+                    spellIndex = 2;
                 }
+                    
             }
 
 
@@ -379,7 +370,34 @@ namespace StarterAssets
             _input.fireBis = false;
         }
 
+        public void LaunchSpell()
+        {
+            _animator.ResetTrigger("SpellCast");
+            switch (spellIndex)
+            {
+                case 1:
+                    _mainSpell.LaunchBullet(_fireStart);
+                    _spellCooldown = 1;
 
+                    if (SpellAudioClip.Length > 0)
+                    {
+                        var index = UnityEngine.Random.Range(0, SpellAudioClip.Length);
+                        AudioSource.PlayClipAtPoint(SpellAudioClip[index], transform.TransformPoint(_controller.center), 0.5f);
+                    }
+                    break;
+
+                case 2:
+                    _seconSpell.LaunchBullet(_fireStart);
+                    _spellCooldown = 1;
+
+                    if (SpellAudioClip.Length > 0)
+                    {
+                        var index = UnityEngine.Random.Range(0, SpellAudioClip.Length);
+                        AudioSource.PlayClipAtPoint(SpellAudioClip[index], transform.TransformPoint(_controller.center), 0.5f);
+                    }
+                    break;
+            }
+        }
 
         private void MainGravity()
         {

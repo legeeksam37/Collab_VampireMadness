@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using UnityEngine.SceneManagement;
+using Photon.Pun.Demo.PunBasics;
 
 public class PlayerSpawner : MonoBehaviour
 {
@@ -31,6 +32,7 @@ public class PlayerSpawner : MonoBehaviour
         }
     }
 
+
     public GameObject playerPrefab;
     public GameObject waveManagerPrefab;
 
@@ -40,6 +42,31 @@ public class PlayerSpawner : MonoBehaviour
     public float maxY;
     public float minZ;
     public float maxZ;
+
+    private static PlayerSpawner instance;
+    public static PlayerSpawner Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<PlayerSpawner>();
+            }
+            return instance;
+        }
+    }
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -59,5 +86,4 @@ public class PlayerSpawner : MonoBehaviour
         GameObject player = PhotonNetwork.Instantiate(playerPrefab.name, randomPosition, Quaternion.identity);
         SceneManager.LoadScene("MainLevel");
     }
-
 }

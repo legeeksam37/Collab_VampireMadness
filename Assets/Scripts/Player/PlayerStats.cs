@@ -19,7 +19,6 @@ public class PlayerStats : MonoBehaviour
     private void Start()
     {
         hudManager = GameObject.FindObjectOfType<UIManager>();
-        Debug.Log(this.gameObject.name);
     }
 
     void Update()

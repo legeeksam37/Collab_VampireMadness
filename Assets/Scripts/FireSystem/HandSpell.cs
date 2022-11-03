@@ -34,14 +34,14 @@ public class HandSpell : MonoBehaviour
         _newBall.gameObject.transform.SetParent(GameObject.Find("GameObjects").gameObject.transform);
 
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if (collision != null)
         {
             Destroy(gameObject);
         }
 
-        if(collision.gameObject.tag == "Vampire" || collision.gameObject.tag == "Zombie")
+        if(collision.gameObject.tag == "Enemy")
         {
             EnemyStats enemyStats = collision.gameObject.GetComponent<EnemyStats>();
             enemyStats.TakeDamage(damage, stats);
