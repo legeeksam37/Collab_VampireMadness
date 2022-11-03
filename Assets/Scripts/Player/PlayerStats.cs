@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
+    [SerializeField]
+    private UIManager hudManager;
+
     [Header("Player stats")]
 
     public float PV = 100f;
@@ -13,9 +16,9 @@ public class PlayerStats : MonoBehaviour
 
     public float SpellsPower = 1f;
 
+
     void Update()
     {
-        Debug.Log(PV);
         Death();
     }
     public void UsePoints(float amount)
@@ -26,6 +29,7 @@ public class PlayerStats : MonoBehaviour
     public void TakeDamage(float amount)
     {
         PV -= amount;
+        hudManager.UpdateHealthBar(PV);
     }
 
     public void Death()
@@ -34,5 +38,11 @@ public class PlayerStats : MonoBehaviour
         {
             SceneManager.LoadScene("MainLevel");
         }
+    }
+
+    public void AddPoints(int amount)
+    {
+        Points += amount;
+        Debug.Log(Points.ToString());
     }
 }

@@ -48,6 +48,6 @@ public class UIManager : MonoBehaviour
 
     public void UpdateHealthBar(float progression)
     {
-        HealthBar.value = progression;
+        HealthBar.value = progression / 100;
     }
 }

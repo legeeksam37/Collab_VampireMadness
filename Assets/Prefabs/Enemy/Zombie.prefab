@@ -1134,7 +1134,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PV: 100
-  damage: 0
+  damage: 10
+  pointsOnDeath: 75
 --- !u!136 &-7910053945329857892
 CapsuleCollider:
   m_ObjectHideFlags: 0

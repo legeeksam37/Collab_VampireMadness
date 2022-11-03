@@ -12,11 +12,11 @@ public class EnemyController : MonoBehaviour
 
     [SerializeField] private AnimationClip clip;
 
-    private WaveSpawner waveSpawner;
-
     private NavMeshAgent agent;
 
     private EnemyStats enemyStats;
+
+    PlayerStats nearestPlayer;
 
     public float cooldown;
 
@@ -30,7 +30,6 @@ public class EnemyController : MonoBehaviour
         anim = GetComponent<Animator>();
         enemyStats = GetComponent<EnemyStats>();
         movePositionTransform = GameObject.Find(movePositionTransform.name).transform;
-        waveSpawner = GameObject.FindWithTag("WaveManager").GetComponent<WaveSpawner>();
     }
 
     void Start()
@@ -47,21 +46,7 @@ public class EnemyController : MonoBehaviour
         {
             agent.destination = movePositionTransform.position;
         }
-        Debug.Log(cooldown);
         CheckCooldown();
-        Death();
-    }
-
-    void Death()
-    {
-        if (enemyStats.PV <= 0)
-        {
-            if (waveSpawner.EnemiesAlive != 0)
-            {
-                waveSpawner.EnemiesAlive -= 1;
-            }
-            Destroy(gameObject);
-        }
     }
 
     void OnCollisionStay(Collision collision)
@@ -70,8 +55,7 @@ public class EnemyController : MonoBehaviour
         {
             if (cooldown <= 0 && isAttack == false)
             {
-                PlayerStats stats = collision.gameObject.GetComponent<PlayerStats>();
-                stats.TakeDamage(enemyStats.damage);
+                nearestPlayer = collision.gameObject.GetComponent<PlayerStats>();
                 anim.SetTrigger("Attack");
                 isAttack = true;
                 isMove = false;
@@ -86,7 +70,7 @@ public class EnemyController : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             anim.ResetTrigger("Attack");
-            isMove = true;
+            nearestPlayer = null;
             CheckCooldown();
         }
         return;
@@ -100,6 +84,7 @@ public class EnemyController : MonoBehaviour
             if (cooldown <= 0)
             {
                 isAttack = false;
+                isMove = true;
             }
         }
     }
@@ -114,6 +99,18 @@ public class EnemyController : MonoBehaviour
                 cooldown = clip.length;
                 break;
             }
+        }
+    }
+
+    public void DealDamage()
+    {
+        if(nearestPlayer != null)
+        {
+            nearestPlayer.TakeDamage(enemyStats.damage);
+        }
+        else
+        {
+            Debug.Log("Player trop loin");
         }
     }
 }
