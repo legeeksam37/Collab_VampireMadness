@@ -18404,7 +18404,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WaveText: {fileID: 2041558728}
   WaveDelayProgress: {fileID: 247844250}
-  HealthBar: {fileID: 0}
+  HealthBar: {fileID: 634743001}
   WaveSpawner: {fileID: 1218397173}
 --- !u!4 &473372723
 Transform:
@@ -81466,11 +81466,28 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 774054974}
     m_Modifications:
+    - target: {fileID: 293895542045776521, guid: 0636111d99271ba4ab1cf305220c5d23,
+        type: 3}
+      propertyPath: hudManager
+      value: 
+      objectReference: {fileID: 473372722}
     - target: {fileID: 7261230082137554465, guid: 0636111d99271ba4ab1cf305220c5d23,
         type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7261230082137554474, guid: 0636111d99271ba4ab1cf305220c5d23,
+        type: 3}
+      propertyPath: _mainSpell
+      value: 
+      objectReference: {fileID: 3973301834630085419, guid: 09a95e64686f5574fb8354f3dcc45a06,
+        type: 3}
+    - target: {fileID: 7261230082137554474, guid: 0636111d99271ba4ab1cf305220c5d23,
+        type: 3}
+      propertyPath: _seconSpell
+      value: 
+      objectReference: {fileID: 8455110575747909335, guid: 962952c0fddb73b4fb05538a290e6ae7,
+        type: 3}
     - target: {fileID: 8038576674318591131, guid: 0636111d99271ba4ab1cf305220c5d23,
         type: 3}
       propertyPath: m_RootOrder
@@ -81866,17 +81883,17 @@ PrefabInstance:
     - target: {fileID: 8944336655422409503, guid: f6d148d888ffbf54b9afe9936dfaec1f,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8944336655422409503, guid: f6d148d888ffbf54b9afe9936dfaec1f,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8944336655422409503, guid: f6d148d888ffbf54b9afe9936dfaec1f,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8944336655422409503, guid: f6d148d888ffbf54b9afe9936dfaec1f,
         type: 3}
