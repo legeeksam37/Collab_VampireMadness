@@ -59,6 +59,6 @@ public class PlayerSpawner : MonoBehaviour
         PhotonNetwork.Destroy(Player.gameObject);
         Vector3 randomPosition = new Vector3(Random.Range(minX, maxX), Random.Range(minY, maxY), Random.Range(minZ, maxZ));
         GameObject player = PhotonNetwork.Instantiate(playerPrefab.name, randomPosition, Quaternion.identity);
-        SceneManager.LoadScene("MainLevel");
+        PhotonNetwork.LoadScene("MainLevel");
     }
 }
