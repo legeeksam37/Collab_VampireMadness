@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cinemachine;
+using System;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -105,6 +106,7 @@ namespace StarterAssets
         private CharacterController _controller;
         private StarterAssetsInputs _input;
         private GameObject _mainCamera;
+        private GameObject _followCamera;
 
         // fire system
         [Header("Spell system")]
@@ -136,6 +138,9 @@ namespace StarterAssets
             if (_mainCamera == null)
             {
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+                _followCamera = GameObject.FindGameObjectWithTag("FollowCamera");
+                CinemachineVirtualCamera _tempFollow = _followCamera.GetComponent<CinemachineVirtualCamera>();
+                _tempFollow.Follow = GameObject.Find("PlayerCameraRoot").transform;
             }
         }
 
