@@ -1035,11 +1035,12 @@ GameObject:
   - component: {fileID: -1290493750629271810}
   - component: {fileID: 3339246595768457402}
   - component: {fileID: 5079311017291016245}
+  - component: {fileID: 959435446764409511}
   - component: {fileID: -7910053945329857892}
   - component: {fileID: -2962569347071896573}
   m_Layer: 0
   m_Name: Zombie
-  m_TagString: Enemy
+  m_TagString: Zombie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1117,10 +1118,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movePositionTransform: {fileID: 7753758839992651005, guid: 73171dd58b0e4224e98d78df242f2698,
     type: 3}
-  cap: {fileID: -7910053945329857892}
   anim: {fileID: -1290493750629271810}
   cooldown: 0
-  life: 0
+--- !u!114 &959435446764409511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4760410176510112036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd3f139c18117fe4bb7e79b7cc07a791, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PV: 100
+  damage: 10
+  pointsOnDeath: 75
 --- !u!136 &-7910053945329857892
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1131,10 +1145,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.2164343
-  m_Height: 2.4067392
+  m_Radius: 0.2475844
+  m_Height: 2.0389564
   m_Direction: 1
-  m_Center: {x: 0.006544888, y: 0.7033696, z: 0}
+  m_Center: {x: 0.006130755, y: 0.88726103, z: 0}
 --- !u!54 &-2962569347071896573
 Rigidbody:
   m_ObjectHideFlags: 0

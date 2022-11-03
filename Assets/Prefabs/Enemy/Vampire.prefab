@@ -781,12 +781,13 @@ GameObject:
   - component: {fileID: 4088985291582948644}
   - component: {fileID: -1544666514636293634}
   - component: {fileID: 1090792571756047132}
+  - component: {fileID: 6559619991955367546}
   - component: {fileID: 9031598434354746840}
   - component: {fileID: -2851170113016079083}
   - component: {fileID: 8372090213192225329}
   m_Layer: 0
   m_Name: Vampire
-  m_TagString: Enemy
+  m_TagString: Vampire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -842,10 +843,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movePositionTransform: {fileID: 7753758839992651005, guid: 73171dd58b0e4224e98d78df242f2698,
     type: 3}
-  cap: {fileID: 0}
   anim: {fileID: -1544666514636293634}
   cooldown: 0
-  life: 0
+--- !u!114 &6559619991955367546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3743950178230017950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd3f139c18117fe4bb7e79b7cc07a791, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PV: 150
+  damage: 20
+  pointsOnDeath: 100
 --- !u!195 &9031598434354746840
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -878,10 +892,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.22501165
-  m_Height: 2.3548632
+  m_Radius: 0.23879638
+  m_Height: 2.0333648
   m_Direction: 1
-  m_Center: {x: -0.0033358335, y: 0.6774316, z: 0}
+  m_Center: {x: -0.0012374818, y: 0.8565998, z: 0}
 --- !u!54 &8372090213192225329
 Rigidbody:
   m_ObjectHideFlags: 0
