@@ -22,9 +22,4 @@ public class SpawnPlayers : MonoBehaviour
         PhotonNetwork.Instantiate(playerPrefab.name, randomPosition, Quaternion.identity);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
