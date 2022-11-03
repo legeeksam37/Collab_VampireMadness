@@ -1406,7 +1406,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6267589987984303942}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.19300032, y: 1.375, z: -4.4379997}
+  m_LocalPosition: {x: 0.19300008, y: 1.73, z: -5.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1556,7 +1556,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6267589988389749723}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.19300032, y: 1.375, z: -4.4379997}
+  m_LocalPosition: {x: 0.19300008, y: 1.73, z: -5.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1626,7 +1626,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6267589988901350838}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.007, y: 1.375, z: -0.438}
+  m_LocalPosition: {x: -0.007, y: 1.73, z: -1.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1744,7 +1744,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6267589989799761724}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.151, y: 1.4, z: 0.3415}
+  m_LocalPosition: {x: 0.151, y: 1.4, z: 0.431}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2330,8 +2330,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSpeed: 2
   SprintSpeed: 5.335
-  RotationSmoothTime: 0.12
-  SpeedChangeRate: 10
   LandingAudioClip: {fileID: 8300000, guid: ff697d3070687ce4583faa0561a145a2, type: 3}
   FootstepAudioClips:
   - {fileID: 8300000, guid: 9f472551c13113f4e9000fdfcd995a70, type: 3}
@@ -2344,10 +2342,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6fc97372a80b25d41b5e81130f9e873a, type: 3}
   - {fileID: 8300000, guid: aa3f35022a35ae34790b8f926a556497, type: 3}
   FootstepAudioVolume: 0.3
-  FirebalAudioClips:
-  - {fileID: 8300000, guid: d2c3b794d018f2848ab7b4d9d952b5c2, type: 3}
-  - {fileID: 8300000, guid: 39f2d928e5b188f4baf5d297444c20c3, type: 3}
-  - {fileID: 8300000, guid: 4c25034f9161c6c48ae58e64d2bb3c04, type: 3}
+  SpellAudioClip: []
+  RotationSmoothTime: 0.12
+  SpeedChangeRate: 10
   Gravity: -15
   FallTimeout: 0.15
   Grounded: 1
@@ -2361,10 +2358,10 @@ MonoBehaviour:
   BottomClamp: -30
   CameraAngleOverride: 0
   LockCameraPosition: 0
-  _cooldown: 0
+  _spellCooldown: 0
   _fireStart: {fileID: 6267589989799761725}
-  _fireball: {fileID: -4069397903096368691, guid: 09a95e64686f5574fb8354f3dcc45a06,
-    type: 3}
+  _mainSpell: {fileID: 0}
+  _seconSpell: {fileID: 0}
 --- !u!114 &9102868852652048296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2399,6 +2396,7 @@ MonoBehaviour:
   sprint: 0
   interaction: 0
   fire: 0
+  fireBis: 0
   analogMovement: 0
   cursorLocked: 1
   cursorInputForLook: 1
@@ -2461,6 +2459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49b3421acc3ed4b4798830e6a77a4c09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hudManager: {fileID: 0}
   PV: 100
   Points: 0
   SpellsPower: 1
