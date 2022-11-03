@@ -65378,6 +65378,26 @@ PrefabInstance:
       propertyPath: _spellCooldown
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6976412522085537356, guid: 73171dd58b0e4224e98d78df242f2698,
+        type: 3}
+      propertyPath: SpellAudioClip.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6976412522085537356, guid: 73171dd58b0e4224e98d78df242f2698,
+        type: 3}
+      propertyPath: SpellAudioClip.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: d2c3b794d018f2848ab7b4d9d952b5c2, type: 3}
+    - target: {fileID: 6976412522085537356, guid: 73171dd58b0e4224e98d78df242f2698,
+        type: 3}
+      propertyPath: SpellAudioClip.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 39f2d928e5b188f4baf5d297444c20c3, type: 3}
+    - target: {fileID: 6976412522085537356, guid: 73171dd58b0e4224e98d78df242f2698,
+        type: 3}
+      propertyPath: SpellAudioClip.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4c25034f9161c6c48ae58e64d2bb3c04, type: 3}
     - target: {fileID: 7753758839992651005, guid: 73171dd58b0e4224e98d78df242f2698,
         type: 3}
       propertyPath: m_RootOrder
@@ -65435,7 +65455,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 170907365184056381, guid: 73171dd58b0e4224e98d78df242f2698, type: 3}
-    - {fileID: 1878733551, guid: 73171dd58b0e4224e98d78df242f2698, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 73171dd58b0e4224e98d78df242f2698, type: 3}
 --- !u!1001 &1713222538
 PrefabInstance:
