@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,8 @@ public class EnemyController : MonoBehaviour
 
     [SerializeField] private Animator anim;
 
+    [SerializeField] private AnimationClip clip;
+
     private WaveSpawner waveSpawner;
 
     private NavMeshAgent agent;
@@ -17,8 +20,6 @@ public class EnemyController : MonoBehaviour
 
     public float cooldown;
 
-    private float distPlayer;
-
     public static bool isAttack;
 
     public static bool isMove;
@@ -26,14 +27,15 @@ public class EnemyController : MonoBehaviour
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        movePositionTransform = GameObject.Find(movePositionTransform.name).transform;
-        distPlayer = Vector3.Distance(movePositionTransform.position, transform.position);
+        anim = GetComponent<Animator>();
         enemyStats = GetComponent<EnemyStats>();
+        movePositionTransform = GameObject.Find(movePositionTransform.name).transform;
         waveSpawner = GameObject.FindWithTag("WaveManager").GetComponent<WaveSpawner>();
     }
 
     void Start()
     {
+        cooldown = 0;
         isAttack = false;
         isMove = false;
     }
@@ -45,6 +47,7 @@ public class EnemyController : MonoBehaviour
         {
             agent.destination = movePositionTransform.position;
         }
+        Debug.Log(cooldown);
         CheckCooldown();
         Death();
     }
@@ -69,9 +72,22 @@ public class EnemyController : MonoBehaviour
             {
                 PlayerStats stats = collision.gameObject.GetComponent<PlayerStats>();
                 stats.TakeDamage(enemyStats.damage);
+                anim.SetTrigger("Attack");
                 isAttack = true;
-                cooldown = 1;
+                isMove = false;
+                GetAnimClip();
             }
+        }
+        return;
+    }
+
+    void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            anim.ResetTrigger("Attack");
+            isMove = true;
+            CheckCooldown();
         }
         return;
     }
@@ -84,6 +100,19 @@ public class EnemyController : MonoBehaviour
             if (cooldown <= 0)
             {
                 isAttack = false;
+            }
+        }
+    }
+
+    void GetAnimClip()
+    {
+        AnimationClip[] clips = anim.runtimeAnimatorController.animationClips;
+        foreach (AnimationClip clip in clips)
+        {
+            if(clip.name == "Attack")
+            {
+                cooldown = clip.length;
+                break;
             }
         }
     }

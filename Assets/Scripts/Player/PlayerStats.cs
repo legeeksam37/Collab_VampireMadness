@@ -15,6 +15,7 @@ public class PlayerStats : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(PV);
         Death();
     }
     public void UsePoints(float amount)
