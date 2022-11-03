@@ -16,6 +16,10 @@ public class PlayerStats : MonoBehaviour
 
     public float SpellsPower = 1f;
 
+    public void Start()
+    {
+        hudManager = GameObject.FindObjectOfType<UIManager>();
+    }
 
     void Update()
     {
