@@ -135,7 +135,7 @@ namespace StarterAssets
         private void Awake()
         {
             // get a reference to our main camera
-            if (_mainCamera == null)
+            if (_mainCamera == null && view.IsMine)
             {
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
             }
