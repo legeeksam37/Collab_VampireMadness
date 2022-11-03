@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Cinemachine;
+using System;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using Photon.Pun;
+using System.Collections.Generic;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
@@ -108,6 +110,8 @@ namespace StarterAssets
         private CharacterController _controller;
         private StarterAssetsInputs _input;
         private GameObject _mainCamera;
+        private GameObject _followCamera;
+        private Vector3 m_LastPosition;
 
         // fire system
         [Header("Fire system")]
@@ -137,10 +141,18 @@ namespace StarterAssets
             // the player's own view
             view = GetComponent<PhotonView>();
             
-            // get a reference to our main camera
-            if (_mainCamera == null && view.IsMine)
+            if (_mainCamera == null)
             {
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+                _followCamera = GameObject.FindGameObjectWithTag("FollowCamera");
+                if (_followCamera.transform.parent == this)
+                {
+                    CinemachineBrain _tempCamera = _mainCamera.GetComponent<CinemachineBrain>();
+                    _tempCamera.ManualUpdate();
+                }
+                CinemachineVirtualCamera _tempFollow = _followCamera.GetComponent<CinemachineVirtualCamera>();
+                _tempFollow.Follow = GameObject.Find("PlayerCameraRoot").transform;
+
             }
         }
 
@@ -166,15 +178,16 @@ namespace StarterAssets
 
         private void Update()
         {
-            if (view.IsMine){
+            if (view.IsMine == true){
                 _hasAnimator = TryGetComponent(out _animator);
                 _fireStart.transform.rotation = transform.rotation;
-
                 MainGravity();
                 GroundedCheck();
                 Move();
                 Fire();
             }
+
+            UpdateAnimation();
         }
 
         private void LateUpdate()
@@ -294,6 +307,19 @@ namespace StarterAssets
             }
         }
 
+        private void UpdateAnimation()
+        {
+            Vector3 movementVector = transform.position - m_LastPosition;
+
+            float speed = Vector3.Dot( movementVector.normalized, transform.forward );
+            float direction = Vector3.Dot( movementVector.normalized, transform.right );
+
+            _animator.SetFloat( "Speed", speed );
+            _animator.SetFloat( "Direction", direction );
+
+            m_LastPosition = transform.position;
+        }
+        
         private void Interaction(Collider other)
         {
             if(_input.interaction)
@@ -424,5 +450,7 @@ namespace StarterAssets
                 AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
             }
         }
+
     }
+
 }
