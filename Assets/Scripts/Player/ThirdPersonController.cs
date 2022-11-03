@@ -317,7 +317,7 @@ namespace StarterAssets
                     if (SpellAudioClip.Length > 0)
                     {
                         var index = UnityEngine.Random.Range(0, SpellAudioClip.Length);
-                        AudioSource.PlayClipAtPoint(SpellAudioClip[index], transform.TransformPoint(_controller.center), 1);
+                        AudioSource.PlayClipAtPoint(SpellAudioClip[index], transform.TransformPoint(_controller.center), 0.5f);
                     }
                 }
             }
@@ -342,7 +342,7 @@ namespace StarterAssets
                     if (SpellAudioClip.Length > 0)
                     {
                         var index = UnityEngine.Random.Range(0, SpellAudioClip.Length);
-                        AudioSource.PlayClipAtPoint(SpellAudioClip[index], transform.TransformPoint(_controller.center), 1);
+                        AudioSource.PlayClipAtPoint(SpellAudioClip[index], transform.TransformPoint(_controller.center), 0.5f);
                     }
                 }
             }

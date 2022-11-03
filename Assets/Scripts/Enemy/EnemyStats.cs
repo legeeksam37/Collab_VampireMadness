@@ -10,19 +10,30 @@ public class EnemyStats : MonoBehaviour
 
     public float damage = 0f;
 
+    [SerializeField]
+    int pointsOnDeath;
+
+    private WaveSpawner waveSpawner;
+
     void Start()
     {
-        AssignDamage();
+        waveSpawner = GameObject.FindWithTag("WaveManager").GetComponent<WaveSpawner>();
     }
-    void AssignDamage()
+
+
+    public void TakeDamage(float damage, PlayerStats playerDealDamage)
     {
-        if (gameObject.tag == "Zombie")
+        PV -= damage;
+
+        if (PV <= 0)
         {
-            damage = 10f;
-        }
-        if (gameObject.tag == "Vampire")
-        {
-            damage = 20f;
+            if (waveSpawner.EnemiesAlive != 0)
+            {
+                waveSpawner.EnemiesAlive -= 1;
+            }
+
+            playerDealDamage.AddPoints(pointsOnDeath);
+            Destroy(gameObject);
         }
     }
 }

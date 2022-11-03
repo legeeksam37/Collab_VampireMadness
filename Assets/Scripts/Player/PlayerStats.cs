@@ -39,4 +39,10 @@ public class PlayerStats : MonoBehaviour
             SceneManager.LoadScene("MainLevel");
         }
     }
+
+    public void AddPoints(int amount)
+    {
+        Points += amount;
+        Debug.Log(Points.ToString());
+    }
 }

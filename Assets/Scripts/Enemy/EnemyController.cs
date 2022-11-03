@@ -46,7 +46,7 @@ public class EnemyController : MonoBehaviour
             agent.destination = movePositionTransform.position;
         }
         CheckCooldown();
-        Death();
+        //Death();
     }
 
     void Death()

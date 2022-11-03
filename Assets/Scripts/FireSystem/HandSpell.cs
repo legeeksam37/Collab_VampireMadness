@@ -44,7 +44,7 @@ public class HandSpell : MonoBehaviour
         if(collision.gameObject.tag == "Vampire" || collision.gameObject.tag == "Zombie")
         {
             EnemyStats enemyStats = collision.gameObject.GetComponent<EnemyStats>();
-            enemyStats.PV -= damage;
+            enemyStats.TakeDamage(damage, stats);
         }
     }
 }
