@@ -16,6 +16,10 @@ public class PlayerStats : MonoBehaviour
 
     public float SpellsPower = 1f;
 
+    private void Start()
+    {
+        hudManager = GameObject.FindObjectOfType<UIManager>();
+    }
 
     void Update()
     {
@@ -36,7 +40,7 @@ public class PlayerStats : MonoBehaviour
     {
         if(PV <= 0f)
         {
-            SceneManager.LoadScene("MainLevel");
+            PlayerSpawner.Instance.Respawn(this.gameObject);
         }
     }
 

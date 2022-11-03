@@ -12,11 +12,13 @@ public class EnemyController : MonoBehaviour
 
     [SerializeField] private AnimationClip clip;
 
+    public GameObject[] players = new GameObject[0];
+
     private NavMeshAgent agent;
 
     private EnemyStats enemyStats;
 
-    PlayerStats nearestPlayer;
+    PlayerStats player;
 
     public float cooldown;
 
@@ -29,7 +31,6 @@ public class EnemyController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         enemyStats = GetComponent<EnemyStats>();
-        movePositionTransform = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     void Start()
@@ -47,6 +48,7 @@ public class EnemyController : MonoBehaviour
             agent.destination = movePositionTransform.position;
         }
         CheckCooldown();
+        GetNearestPlayer();
     }
 
     void OnCollisionStay(Collision collision)
@@ -55,7 +57,7 @@ public class EnemyController : MonoBehaviour
         {
             if (cooldown <= 0 && isAttack == false)
             {
-                nearestPlayer = collision.gameObject.GetComponent<PlayerStats>();
+                player = collision.gameObject.GetComponent<PlayerStats>();
                 anim.SetTrigger("Attack");
                 isAttack = true;
                 isMove = false;
@@ -70,7 +72,7 @@ public class EnemyController : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             anim.ResetTrigger("Attack");
-            nearestPlayer = null;
+            player = null;
             CheckCooldown();
         }
         return;
@@ -104,13 +106,32 @@ public class EnemyController : MonoBehaviour
 
     public void DealDamage()
     {
-        if(nearestPlayer != null)
+        if(player != null)
         {
-            nearestPlayer.TakeDamage(enemyStats.damage);
+            player.TakeDamage(enemyStats.damage);
         }
         else
         {
             Debug.Log("Player trop loin");
+        }
+    }
+
+    private void GetNearestPlayer()
+    {
+        players = GameObject.FindGameObjectsWithTag("Player");
+        foreach(GameObject i in players)
+        {
+            float _tempPos = Vector3.Distance(i.transform.position, transform.position);
+            if(_tempPos < 2)
+            {
+                movePositionTransform = i.transform;
+                //isMove = false;
+            }
+            else
+            {
+                int _tempRand = UnityEngine.Random.Range(0, players.Length);
+                movePositionTransform = players[_tempRand].transform;
+            }
         }
     }
 }

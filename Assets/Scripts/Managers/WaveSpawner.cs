@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Photon.Pun;
 
 public class WaveSpawner : MonoBehaviour
 {
@@ -31,11 +32,21 @@ public class WaveSpawner : MonoBehaviour
     public int EnemiesAlive = 0;
 
 
-
+    void Start()
+    {
+       if(PhotonNetwork.IsMasterClient == true)
+       {
+           gameObject.SetActive(true);
+       }
+       else
+       {
+           gameObject.SetActive(false);
+       }
+        uiManager = GameObject.FindObjectOfType<UIManager>();
+    }
     // Update is called once per frame
     void Update()
     {
-
         if (EnemiesAlive > 0)
         {
 //            Debug.Log(EnemiesAlive);
