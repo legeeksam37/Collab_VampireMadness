@@ -20,7 +20,7 @@ public class Menu : MonoBehaviour
 
     public void OnEnter(InputValue Value)
     {
-        Debug.Log("Changing to Lobby");
-        SceneManager.LoadScene("Assets/Scenes/Lobby/Lobby.unity");
+        Debug.Log("Changing to loadingScreen");
+        SceneManager.LoadScene("LoadincScreen");
     }
 }
