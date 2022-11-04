@@ -1,6 +1,7 @@
 using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class ShopAdrenaline : InteractionBase
@@ -14,6 +15,14 @@ public class ShopAdrenaline : InteractionBase
     [SerializeField]
     private float priceEvolution;
 
+    [SerializeField]
+    private Text testAdrenaline;
+
+
+    public void Start()
+    {
+        testAdrenaline.text = "Points : " + buyCost.ToString();
+    }
 
     public override void Action(GameObject player)
     { 
@@ -31,6 +40,7 @@ public class ShopAdrenaline : InteractionBase
 
             buyCost *= priceEvolution;
             buyCost = Mathf.Round(buyCost);
+            testAdrenaline.text = "Points : " + buyCost.ToString();
         }
         else
         {
