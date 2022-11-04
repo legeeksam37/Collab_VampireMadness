@@ -33,6 +33,7 @@ public class EnemyStats : MonoBehaviour
             view = GetComponent<PhotonView>();
             view.RPC("networkDestroy", RpcTarget.All);
             playerDealDamage.AddPoints(pointsOnDeath);
+            
         }
     }
 

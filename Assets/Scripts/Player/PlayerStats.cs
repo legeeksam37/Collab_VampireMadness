@@ -47,6 +47,6 @@ public class PlayerStats : MonoBehaviour
     public void AddPoints(int amount)
     {
         Points += amount;
-        Debug.Log(Points.ToString());
+        hudManager.updatePoints();
     }
 }

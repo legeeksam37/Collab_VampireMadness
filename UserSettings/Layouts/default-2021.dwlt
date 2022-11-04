@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Inspector
+  m_Title: Hierarchy
   m_RootView: {fileID: 3}
   m_MinSize: {x: 875, y: 350}
   m_MaxSize: {x: 10000, y: 10000}
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 92
+  controlID: 57
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -193,7 +193,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 93
+  controlID: 58
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -295,8 +295,8 @@ MonoBehaviour:
     y: 0
     width: 530
     height: 947
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -407,9 +407,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 92b20200
-      m_LastClickedID: 176786
-      m_ExpandedIDs: 96d1f9ff96dcfaff9a19fbffb884fbff9cbefbff8c0bfdffae98fdfff8f9feff3cfefeffecfaffffe82201003424010000c7010044c8010028f20100
+      m_SelectedIDs: 2e9c0000
+      m_LastClickedID: 0
+      m_ExpandedIDs: 4ca9e5fffeede5ff362de6fffc2fe6ffb630e6ff8a6ee6ff9a6ee6ffa46ee6ffaa6ee6ff1271e6ff2271e6ff2871e6ffbce2e6ff70e3e6ff5621e7ff7821e7ff9221e7ff5a68e7ff4a83ebff024eedff76f5edffe234eeff5c36eeff2671eeff72ffeeff724defff34cbefffee8bf0ff06cbf0ff284cf2ffda8cf2ff78d9f2ff00dbf2ff6e17f3ff1e5af3fffc5cf3ff40a2f4ff82e0f4ff0ce2f4ff1821f5ff3861f5ff18def5ff9ee9f6ff2826f7ff5239f8ffdab6f8ff2a33faffc434faff6471faff9af2faffd42ffbff4cadfbff80affbff58f0fbff042efcff586ffcffecb1fcfff60efdff72b1fdff90f3fdff0c7dfeffb4b8feff56baffff12fbffff800d0100744d010000dc01000602020030020200b46b02004a8102005c940200a0950200deb9020008ba0200f2bf020092e802005a2803003e3e0300823f0300a6bf0300c6ea0300524c0400d8c004008e0105009a2a050080a7050038c10500a6ec0500340206004c820600322707001251070016a80700ee620a00eedb0a00
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -554,7 +554,7 @@ MonoBehaviour:
       containerId: overlay-container--right
       floating: 0
       collapsed: 0
-      displayed: 1
+      displayed: 0
       snapOffset: {x: 0, y: 25}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
@@ -922,9 +922,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 115}
-    m_SelectedIDs: 04720000
-    m_LastClickedID: 29188
-    m_ExpandedIDs: 0000000002720000047200000672000094a3000000ca9a3b
+    m_SelectedIDs: ee9b0000
+    m_LastClickedID: 39918
+    m_ExpandedIDs: 00000000ec9b0000ee9b0000f09b0000269c000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -952,7 +952,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000002720000047200000672000008720000
+    m_ExpandedIDs: 00000000ec9b0000ee9b0000f09b0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

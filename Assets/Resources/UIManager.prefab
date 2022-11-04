@@ -48,7 +48,7 @@ MonoBehaviour:
   WaveText: {fileID: 0}
   WaveDelayProgress: {fileID: 0}
   HealthBar: {fileID: 0}
-  waveSpawner: {fileID: 0}
+  PointsText: {fileID: 0}
   view: {fileID: 0}
 --- !u!114 &6666566414446284630
 MonoBehaviour:

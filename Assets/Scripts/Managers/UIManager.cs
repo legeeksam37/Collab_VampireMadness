@@ -11,9 +11,9 @@ public class UIManager : MonoBehaviour
     public GameObject WaveText;
     public Slider WaveDelayProgress;
     public Slider HealthBar;
-
-    [SerializeField]
     private WaveSpawner waveSpawner;
+    public PlayerStats player;
+    public GameObject PointsText;
 
     public PhotonView view;
 
@@ -32,6 +32,9 @@ public class UIManager : MonoBehaviour
                 waveSpawner = spawner;
             }
         }
+        player = GameObject.FindObjectOfType<PlayerStats>();
+        PointsText = GameObject.FindGameObjectWithTag("PointsText");
+        updatePoints();
         // if (PhotonNetwork.IsMasterClient == true){
         //     WaveDelayProgress.gameObject.SetActive(true);
         // } else {
@@ -75,5 +78,10 @@ public class UIManager : MonoBehaviour
     public void UpdateHealthBar(float progression)
     {
         HealthBar.value = progression / 100;
+    }
+
+    public void updatePoints()
+    {
+        PointsText.GetComponent<TextMeshProUGUI>().text = player.Points.ToString();
     }
 }
