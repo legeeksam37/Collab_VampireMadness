@@ -35,6 +35,7 @@ public class PlayerSpawner : MonoBehaviour
 
     public GameObject playerPrefab;
     public GameObject waveManagerPrefab;
+    public GameObject UiManager;
 
     public float minX;
     public float maxX;
@@ -48,6 +49,7 @@ public class PlayerSpawner : MonoBehaviour
     {
         Vector3 randomPosition = new Vector3(Random.Range(minX,maxX), Random.Range(minY,maxY), Random.Range(minZ,maxZ));
         GameObject player = PhotonNetwork.Instantiate(playerPrefab.name, randomPosition, Quaternion.identity);
+        GameObject uiManager = PhotonNetwork.Instantiate(UiManager.name, transform.position, Quaternion.identity);
 
         if (PhotonNetwork.IsMasterClient == true) {
             GameObject wave = PhotonNetwork.Instantiate(waveManagerPrefab.name, transform.position, Quaternion.identity);

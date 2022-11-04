@@ -846,6 +846,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: -1544666514636293634}
   clip: {fileID: 0}
+  players: []
   cooldown: 0
 --- !u!114 &6559619991955367546
 MonoBehaviour:
@@ -862,6 +863,7 @@ MonoBehaviour:
   PV: 150
   damage: 20
   pointsOnDeath: 100
+  view: {fileID: 0}
 --- !u!195 &9031598434354746840
 NavMeshAgent:
   m_ObjectHideFlags: 0

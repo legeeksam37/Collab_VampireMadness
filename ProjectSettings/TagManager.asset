@@ -13,6 +13,9 @@ TagManager:
   - Spawner
   - Enemy
   - Zombie
+  - WaveCount
+  - WaveDelayProgress
+  - HealthBar
   layers:
   - Default
   - TransparentFX

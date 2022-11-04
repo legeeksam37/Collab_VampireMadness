@@ -1138,6 +1138,7 @@ MonoBehaviour:
   PV: 100
   damage: 10
   pointsOnDeath: 75
+  view: {fileID: 0}
 --- !u!136 &-7910053945329857892
 CapsuleCollider:
   m_ObjectHideFlags: 0

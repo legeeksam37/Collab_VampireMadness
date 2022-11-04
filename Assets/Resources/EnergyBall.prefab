@@ -132,6 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 55
   launchForce: 1000
+  view: {fileID: 0}
 --- !u!114 &-7155996904491376172
 MonoBehaviour:
   m_ObjectHideFlags: 0

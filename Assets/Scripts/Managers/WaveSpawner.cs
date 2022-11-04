@@ -32,6 +32,7 @@ public class WaveSpawner : MonoBehaviour
         }
     }
 
+    [SerializeField]
     private UIManager uiManager;
 
     public List<GameObject> spawnedEnemy = new List<GameObject>();
@@ -65,6 +66,7 @@ private void Start()
         else
         {
             gameObject.SetActive(false);
+            gameObject.tag = "Untagged";
         }
         uiManager = GameObject.FindObjectOfType<UIManager>();
         GameObject[] _tempSpawn = GameObject.FindGameObjectsWithTag("Spawner");
@@ -86,6 +88,7 @@ private void Start()
         else 
         {
             EnemyController.isMove = false;
+            //view.RPC("showProgressBarWave", RpcTarget.All);
             uiManager.ShowProgressBarWave(true);
         }
 
@@ -96,8 +99,16 @@ private void Start()
             //return;
         }
         countdown -= Time.deltaTime;
+        Debug.Log("timer = " + countdown/TimeBetweenWaves);
 
         uiManager.UpdateProgressBarWave(countdown/TimeBetweenWaves);
+    }
+
+    [PunRPC]
+    public void showProgressBarWave(){
+        if (PhotonNetwork.IsMasterClient == true){
+            uiManager.ShowProgressBarWave(true);
+        }
     }
 
     [PunRPC]
@@ -108,9 +119,8 @@ private void Start()
     IEnumerator SpawnWave()
     {
         waveIndex++;
-        Debug.Log("hello");
-        // uiManager.UpdateWaveText();
-        // uiManager.ShowProgressBarWave(false);
+        uiManager.UpdateWaveText();
+        uiManager.ShowProgressBarWave(false);
 
         for ( int i = 0; i < waveIndex; i++)
         {
